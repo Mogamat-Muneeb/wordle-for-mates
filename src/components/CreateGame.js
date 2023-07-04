@@ -116,8 +116,8 @@ const CreateGame = () => {
 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`
     const encryptedWord = sjcl.encrypt(secretKey, word);
-    const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
+    const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
 
@@ -155,14 +155,14 @@ const CreateGame = () => {
           placeholder="5 letter word"
           value={word}
           onChange={handleWordChange}
-          className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white"
+          className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white uppercase"
         />
         <input
           type="text"
           placeholder="name"
           value={name}
           onChange={handleNameChange}
-          className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white"
+          className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white uppercase"
         />
         <p
           onClick={generateLink}
