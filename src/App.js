@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
-import Wordle from "./components/Wordle";
-import Solutions from "./data/db.json";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import CreateGame from "./components/CreateGame";
 
 function App() {
-  const [solution, setSolution] = useState(null);
-  useEffect(() => {
-    const randomSolution =
-      Solutions.solutions[
-        Math.floor(Math.random() * Solutions.solutions.length)
-      ];
-    setSolution(randomSolution.word);
-  }, []);
-
   return (
     <div className="App">
-      <h1>Wordle (Lingo)</h1>
-      {solution && <Wordle solution={solution} />}
+      <Router>
+        <Routes>
+          <Route path="/wordle" element={<Home />} />
+          <Route path="/" element={<CreateGame />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
