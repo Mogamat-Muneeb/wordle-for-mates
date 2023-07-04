@@ -1,15 +1,42 @@
 import React from "react";
 
-const HowToPlay = () => {
+const HowToPlay = (props) => {
+  console.log("🚀 ~ file: HowToPlay.js:4 ~ HowToPlay ~ props:", props);
   return (
     <div className="modal2">
       <div className="flex flex-col gap-3">
-        <p className="font-bold md:text-[20px] text-[16px]">How To Play</p>
+        <span className="flex w-full items-center">
+          <span className="flex items-center justify-center w-full">
+            <p className="font-bold md:text-[20px] text-[16px]">How To Play</p>
+          </span>
+          <span className=" flex items-end justify-end ">
+            <button onClick={props.handleShow}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </span>
+        </span>
         <span className="flex flex-col items-center justify-center gap-2">
           <p className=" text-[14px]">
-            You have 6 tries to guess your friend's secret word! All guesses
-            must be valid, English words. For example, if the secret word is
-            CONES, and your first guess is CHAIR, you will see:
+            You have 6 tries to guess
+            <span className="text-[#5ac85a] font-extrabold px-1">
+              {props.createName}'s
+            </span>
+            secret word! All guesses must be valid, English words. For example,
+            if the secret word is CONES, and your first guess is CHAIR, you will
+            see:
           </p>
           <img
             src="https://i.postimg.cc/L8YTnL76/Screenshot-2023-07-04-222201.png"
