@@ -63,28 +63,25 @@ h1 {
 .row.current > div.filled {
   animation: bounce 0.2s ease-in-out forwards;
 }
-/* .keypad {
-  width: 550px;
-  margin: 20px auto;
-} */
-.keypad > div {
-  /* margin: 5px; */
+
+.keypad > div >div {
+
   background: #eee;
-  display: inline-block;
+  /* display: inline-block; */
   border-radius: 6px;
   line-height: 50px;
 }
-.keypad > div.green {
+.keypad > div > div.green  {
   background: #5ac85a;
   color: #fff;
   transition: all 0.3s ease-in;
 }
-.keypad > div.yellow {
+.keypad > div > div.yellow {
   background: #e2cc68;
   color: #fff;
   transition: all 0.3s ease-in;
 }
-.keypad > div.grey {
+.keypad > div > div.grey {
   background: #a1a1a1;
   color: #fff;
   transition: all 0.3s ease-in;

@@ -1,115 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import Letters from "../data/db.json";
-
-// export default function Keypad({ usedKeys, handleLetterClick }) {
-//   const [letters, setLetters] = useState(null);
-
-//   useEffect(() => {
-//     setLetters(Letters.letters);
-//   }, []);
-
-//   const handleClick = (letterKey) => {
-//     handleLetterClick(letterKey);
-//   };
-
-//   return (
-//     <div>
-//       <div className="keypad md:w-[550px] flex-wrap w-[440px] flex  justify-center items-center">
-//         {letters &&
-//           letters.map((l) => {
-//             const color = usedKeys[l.key];
-//             return (
-//               <div
-//                 key={l.key}
-//                 className={`${color}  ${l.key === "Enter" ||  l.key === "Backspace"  ? "w-[100px]" : "w-[40px] " }   `}
-//                 onClick={() => handleClick(l.key)}
-//               >
-//                <span className={` `}> {l.key}</span>
-//               </div>
-//             );
-//           })}
-//       </div>
-//     </div>
-//   );
-// }
-
-// import React, { useEffect, useState } from "react";
-
-// export default function Keypad({ usedKeys, handleLetterClick }) {
-//   const [letters, setLetters] = useState(null);
-
-//   useEffect(() => {
-//     const row1 = [
-//       { key: "a" },
-//       { key: "b" },
-//       { key: "c" },
-//       { key: "d" },
-//       { key: "e" },
-//       { key: "f" },
-//       { key: "g" },
-//       { key: "h" },
-//       { key: "i" },
-//     ];
-
-//     const row2 = [
-//       { key: "j" },
-//       { key: "k" },
-//       { key: "l" },
-//       { key: "m" },
-//       { key: "n" },
-//       { key: "o" },
-//       { key: "p" },
-//       { key: "q" },
-//       { key: "r" },
-//     ];
-
-//     const row3 = [
-//       { key: "s" },
-//       { key: "t" },
-//       { key: "Backspace" },
-//       { key: "u" },
-//       { key: "v" },
-//       { key: "w" },
-//       { key: "x" },
-//       { key: "y" },
-//       { key: "z" },
-//       { key: "Enter" },
-//     ];
-
-//     setLetters([row1, row2, row3]);
-//   }, []);
-
-//   const handleClick = (letterKey) => {
-//     handleLetterClick(letterKey);
-//   };
-
-//   return (
-//     <div>
-//       <div className="keypad md:w-[550px] w-[440px] flex  justify-center items-center">
-//         {letters &&
-//           letters.map((row, rowIndex) =>
-//             row.map((letter) => {
-//               const color = usedKeys[letter.key];
-//               return (
-//                 <div
-//                   key={letter.key}
-//                   className={`${color} ${
-//                     letter.key === "Enter" || letter.key === "Backspace"
-//                       ? "w-[100px]"
-//                       : "w-[40px] "
-//                   }`}
-//                   onClick={() => handleClick(letter.key)}
-//                 >
-//                   <span className="">{letter.key}</span>
-//                 </div>
-//               );
-//             })
-//           )}
-//       </div>
-//     </div>
-//   );
-// }
-
 import React, { useEffect, useState } from "react";
 
 export default function Keypad({ usedKeys, handleLetterClick }) {
@@ -117,40 +5,40 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
 
   useEffect(() => {
     const row1 = [
-      { key: "a" },
-      { key: "b" },
-      { key: "c" },
-      { key: "d" },
+      { key: "q" },
+      { key: "w" },
       { key: "e" },
-      { key: "f" },
-      { key: "g" },
-      { key: "h" },
+      { key: "r" },
+      { key: "t" },
+      { key: "y" },
+      { key: "u" },
       { key: "i" },
+      { key: "o" },
+      { key: "p" },
     ];
 
     const row2 = [
+      { key: "a" },
+      { key: "s" },
+      { key: "d" },
+      { key: "f" },
+      { key: "g" },
+      { key: "h" },
       { key: "j" },
       { key: "k" },
       { key: "l" },
-      { key: "m" },
-      { key: "n" },
-      { key: "o" },
-      { key: "p" },
-      { key: "q" },
-      { key: "r" },
     ];
 
     const row3 = [
-      { key: "s" },
-      { key: "t" },
-      { key: "Backspace" },
-      { key: "u" },
-      { key: "v" },
-      { key: "w" },
-      { key: "x" },
-      { key: "y" },
-      { key: "z" },
       { key: "Enter" },
+      { key: "z" },
+      { key: "x" },
+      { key: "c" },
+      { key: "v" },
+      { key: "b" },
+      { key: "n" },
+      { key: "m" },
+      { key: "Backspace" },
     ];
 
     setLetters([row1, row2, row3]);
@@ -162,23 +50,47 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
 
   return (
     <div>
-      <div className="keypad md:w-[550px] w-[440px] flex bg-red-500  justify-center items-center">
+      <div className="flex flex-col items-center keypad">
         {letters &&
           letters.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex  bg-slate-700">
+            <div key={rowIndex} className="flex items center">
               {row.map((letter) => {
                 const color = usedKeys[letter.key];
                 return (
                   <div
                     key={letter.key}
-                    className={`${color} ${
+                    // className={`${color} ${
+                    //   letter.key === "Enter" || letter.key === "Backspace"
+                    //     ? "w-[100px]"
+                    //     : "w-[40px]"
+                    // } m-[5px]`}
+                    // onClick={() => handleClick(letter.key)}
+                    className={`${color}  ${
                       letter.key === "Enter" || letter.key === "Backspace"
-                        ? "w-[100px]"
-                        : "w-[40px]"
-                    }`}
+                        ? "md:w-[100px] w-[60px] flex items-center justify-center"
+                        : "md:w-[40px] w-[30px] flex items-center justify-center"
+                    } md:m-[5px] m-[2px]   `}
                     onClick={() => handleClick(letter.key)}
                   >
-                    <span className="">{letter.key}</span>
+                    <div className="flex items-center justify-center">
+                      {letter.key === "Backspace" ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          width="20"
+                          class="game-icon"
+                          data-testid="icon-backspace"
+                        >
+                          <path
+                            fill="var(--color-tone-1)"
+                            d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"
+                          ></path>
+                        </svg>
+                      ) : (
+                        <span>{letter.key}</span>
+                      )}
+                    </div>
                   </div>
                 );
               })}
