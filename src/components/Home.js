@@ -10,7 +10,7 @@ const Home = () => {
   const [solution, setSolution] = useState("");
 
   useEffect(() => {
-    const secretKey = "muneeb2905";
+    const secretKey = `${process.env.REACT_APP_SECRET_KEY}`
     const decryptedWord = sjcl.decrypt(secretKey, encryptedWord);
     setSolution(decryptedWord);
   }, [encryptedWord]);
