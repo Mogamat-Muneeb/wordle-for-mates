@@ -50,10 +50,10 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
 
   return (
     <div>
-      <div className="flex flex-col items-center mt-20 md:mt-10 keypad">
+      <div className="flex flex-col items-center justify-center mt-20 md:mt-10 keypad">
         {letters &&
           letters.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex items center">
+            <div key={rowIndex} className="flex mx-4 items center">
               {row.map((letter) => {
                 const color = usedKeys[letter.key];
                 return (
@@ -63,7 +63,7 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
                       letter.key === "Enter" || letter.key === "Backspace"
                         ? "md:w-[100px] w-[60px] flex items-center justify-center"
                         : "md:w-[40px] w-[30px] flex items-center justify-center"
-                    } md:m-[5px] m-[5px]   `}
+                    } md:m-[5px] m-[4.5px]   `}
                     onClick={() => handleClick(letter.key)}
                   >
                     <div className="flex items-center justify-center">

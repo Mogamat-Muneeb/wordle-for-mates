@@ -135,8 +135,8 @@ const CreateGame = () => {
 
   return (
     <div>
-      <h1 className="font-extrabold text-[30px]">Wordle for mates!</h1>
-      <p className="font-extrabold text-[20px] text-[#212529]">
+      <h1 className="font-extrabold text-[30px] p-4 text-[#212529] border-b-[1px] border-[#eee] w-full">Wordle for mates!</h1>
+      <p className="font-extrabold text-[20px] text-[#212529] py-4">
         Create a
         <a
           href="https://www.nytimes.com/games/wordle/index.html"
