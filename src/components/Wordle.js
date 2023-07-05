@@ -13,7 +13,7 @@ export default function Wordle({ solution, createName }) {
     window.addEventListener("keyup", handleKeyup);
 
     if (isCorrect || turn > 5) {
-      setTimeout(() => setShowModal(true), 2000);
+      setTimeout(() => setShowModal(true), 1000);
       window.removeEventListener("keyup", handleKeyup);
     }
 
