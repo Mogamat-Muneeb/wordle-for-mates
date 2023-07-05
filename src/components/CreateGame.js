@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import sjcl from "sjcl";
 import { toast } from "react-toastify";
 import englishWords from "an-array-of-english-words";
@@ -9,7 +9,7 @@ import {
   InstapaperShareButton,
 } from "react-share";
 import { FaFacebook, FaWhatsapp, FaTwitter, FaInstagram } from "react-icons/fa";
-
+import ReactGA from "react-ga"
 const CreateGame = () => {
   const [word, setWord] = useState("");
   const [name, setName] = useState("");
@@ -24,6 +24,12 @@ const CreateGame = () => {
   //   }
   //   setWord(newWord);
   // };
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname)
+  }, [])
+  
+
   const handleWordChange = (event) => {
     const newWord = event.target.value;
     if (newWord.length > 5) {
@@ -48,7 +54,7 @@ const CreateGame = () => {
       toast.error("Please enter both a word and a name.");
       return;
     }
-
+ 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
@@ -56,6 +62,15 @@ const CreateGame = () => {
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
+
+    ReactGA.event({
+      category: link,
+      /** The type of interaction (e.g. 'play') */
+      action: "user generate link ",
+      /** Useful for categorizing events (e.g. 'Fall Campaign') */
+      label: "user label",
+      /** A numeric value associated with the event (e.g. 42) */
+    })
 
     toast.success("Link is copied!");
 
