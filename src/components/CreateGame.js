@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import sjcl from "sjcl";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const CreateGame = () => {
   const [word, setWord] = useState("");
@@ -29,7 +30,7 @@ const CreateGame = () => {
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
 
@@ -47,14 +48,11 @@ const CreateGame = () => {
 
   return (
     <div>
-      <h1 className="font-extrabold text-[30px] p-4 text-[#212529] border-b-[1px] border-[#eee] w-full">
-        Wordle for mates!
-      </h1>
       <p className="font-extrabold text-[20px] text-[#212529] py-4">
         Create a
         <a
           href="https://www.nytimes.com/games/wordle/index.html"
-          className="px-2 underline"
+          className="px-2 underline text-[#5ac85a]"
         >
           Wordle
         </a>
@@ -82,8 +80,8 @@ const CreateGame = () => {
           onClick={generateLink}
           className={
             linkCopied
-              ? "w-full p-4 text-lg font-bold text-center text-white rounded outline-none bg-[#5ac85a]"
-              : "w-full p-4 text-lg font-bold text-center text-white rounded outline-none bg-[#212529]"
+              ? "w-full p-4 text-lg font-bold text-center text-white rounded outline-none bg-[#5ac85a] cursor-not-allowed"
+              : "w-full p-4 text-lg font-bold text-center text-white rounded outline-none bg-[#212529] cursor-pointer"
           }
         >
           {linkCopied ? "Link Copied" : "Create Link"}

@@ -22,9 +22,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="font-extrabold text-[30px] p-4 text-[#212529] border-b-[1px] border-[#eee] w-full">
-        Wordle for mates!
-      </h1>
       {show && <HowToPlay handleShow={handleShow} createName={createName} />}
       <button
         onClick={handleShow}
