@@ -6,7 +6,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
   const shareResult = () => {
     navigator.clipboard
       .writeText(
-        ` I found the solution in ${turn} ${turn > 1 ? "guesses" : "guess"}`
+        ` I found the solution in ${turn} ${turn > 1 ? "guesses" : "guess"} on https://wordle-for-mates.vercel.app`
       )
       .then(() => {
         setLinkCopied(true);
