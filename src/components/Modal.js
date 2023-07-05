@@ -26,7 +26,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
           </p>
           <p className="text-[14px]">
             You found the solution in
-            <span className="font-semibold text-[#5ac85a]"> {turn}</span>
+            <span className="font-semibold text-[#5ac85a]"> {turn} </span>
             {turn > 1 ? "guesses" : "guess"}
           </p>
           <span className="flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -64,7 +64,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
               onClick={shareResult}
               className="text-[14px] bg-[#e2cc68] py-2 px-4 rounded  text-white"
             >
-              {linkCopied ? "Link Copied" : "    Share results"}
+              {linkCopied ? "Link Copied" : "Share results"}
             </button>
           </span>
         </div>
