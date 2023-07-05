@@ -30,10 +30,10 @@ const CreateGame = () => {
 
   const handleWordChange = (event) => {
     const newWord = event.target.value;
-    if (newWord.length > 5) {
-      toast.error("Word should not exceed 5 letters.");
-      return;
-    }
+    // if (newWord.length < 5) {
+    //   toast.error("Word should not exceed 5 letters.");
+    //   return;
+    // }
 
     if (newWord.length === 5 && !englishWords.includes(newWord)) {
       toast.error("Invalid word. Please enter a valid English word.");
@@ -56,7 +56,7 @@ const CreateGame = () => {
       toast.error("Please enter  a name!");
       return;
     }
-    if (word.length > 5) {
+    if (word.length < 5) {
       toast.error("Please enter a 5 letter word!");
       return;
     }
