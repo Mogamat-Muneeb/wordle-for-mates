@@ -4,7 +4,7 @@ import Grid from "./Grid";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
 
-export default function Wordle({ solution }) {
+export default function Wordle({ solution, createName }) {
   const { currentGuess, guesses, turn, isCorrect, usedKeys, handleKeyup } =
     useWordle(solution);
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +29,7 @@ export default function Wordle({ solution }) {
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
       <Keypad usedKeys={usedKeys} handleLetterClick={handleLetterClick} />
       {showModal && (
-        <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
+        <Modal isCorrect={isCorrect} turn={turn} solution={solution} createName={createName} />
       )}
     </div>
   );

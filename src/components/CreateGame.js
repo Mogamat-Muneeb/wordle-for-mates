@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import sjcl from "sjcl";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import englishWords from "an-array-of-english-words";
 
 const CreateGame = () => {
   const [word, setWord] = useState("");
   const [name, setName] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
 
+  console.log("🚀 ~ file: CreateGame.js:5 ~ englishWords:", englishWords);
+  // const handleWordChange = (event) => {
+  //   const newWord = event.target.value;
+  //   console.log("🚀 ~ file: CreateGame.js:14 ~ handleWordChange ~ newWord:", newWord)
+  //   if (newWord.length > 5) {
+  //     toast.error("Word should not exceed 5 letters.");
+  //     return;
+  //   }
+  //   setWord(newWord);
+  // };
   const handleWordChange = (event) => {
     const newWord = event.target.value;
     if (newWord.length > 5) {
       toast.error("Word should not exceed 5 letters.");
       return;
     }
+
+    if (newWord.length === 5 && !englishWords.includes(newWord)) {
+      toast.error("Invalid word. Please enter a valid English word.");
+      return;
+    }
+
     setWord(newWord);
   };
 
@@ -29,8 +45,8 @@ const CreateGame = () => {
 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
-    const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
+    const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
 
@@ -64,7 +80,7 @@ const CreateGame = () => {
       <form className="w-10/12 max-w-md pb-24 mx-auto mt-16 space-y-8 text-center">
         <input
           type="text"
-          placeholder="5 letter word"
+          placeholder="Enter a word"
           value={word}
           onChange={handleWordChange}
           disabled={linkCopied ? true : false}
@@ -72,7 +88,7 @@ const CreateGame = () => {
         />
         <input
           type="text"
-          placeholder="name"
+          placeholder="Enter your name..."
           value={name}
           onChange={handleNameChange}
           disabled={linkCopied ? true : false}

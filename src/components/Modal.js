@@ -1,22 +1,74 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Modal({ isCorrect, solution, turn }) {
+export default function Modal({ isCorrect, solution, turn, createName }) {
+  const [linkCopied, setLinkCopied] = useState(false);
+  const shareResult = () => {
+    navigator.clipboard
+      .writeText(
+        ` I found the solution in ${turn} ${turn > 1 ? "guesses" : "guess"}`
+      )
+      .then(() => {
+        setLinkCopied(true);
+      })
+      .catch((error) => {
+        console.error("Failed to copy the link to the clipboard:", error);
+      });
+  };
   return (
     <div className="modal">
       {isCorrect && (
-        <div>
-          <h1>You Win!</h1>
-          <p className="solution">{solution}</p>
-          <p>You found the solution in {turn} guesses :)</p>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <h1 className="font-bold text-[#5ac85a]">You Win!</h1>
+          <p className="text-[14px]">
+            {createName}'s word was
+            <span className="font-semibold text-[#5ac85a] "> {solution}</span>
+          </p>
+          <p className="text-[14px]">
+            You found the solution in
+            <span className="font-semibold text-[#5ac85a]"> {turn}</span>
+            {turn > 1 ? "guesses" : "guess"}
+          </p>
+          <span className="flex flex-col items-center justify-center gap-4 md:flex-row">
+            <Link
+              to="/"
+              className="text-[14px] bg-[#5ac85a] py-2 px-4 rounded  text-white"
+            >
+              Creat a word
+            </Link>
+            <button
+              onClick={shareResult}
+              className="text-[14px] bg-[#e2cc68] py-2 px-4 rounded  text-white"
+            >
+              {linkCopied ? "Link Copied" : "    Share results"}
+            </button>
+          </span>
         </div>
       )}
       {!isCorrect && (
-        <div>
-          <h1>Nevermind</h1>
-          <p className="solution">{solution}</p>
-          <p>Better luck next time :)</p>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <h1 className="font-bold text-[#ff2f00]">You Lost!</h1>
+          <p className="text-[14px]">
+            {createName}'s word was
+            <span className="font-semibold text-[#ff2f00] "> {solution}</span>
+          </p>
+          <p className="text-[14px]"> Better luck next time!!</p>
+          <span className="flex flex-col items-center justify-center gap-4 md:flex-row">
+            <Link
+              to="/"
+              className="text-[14px] bg-[#5ac85a] py-2 px-4 rounded  text-white"
+            >
+              Creat a word
+            </Link>
+            <button
+              onClick={shareResult}
+              className="text-[14px] bg-[#e2cc68] py-2 px-4 rounded  text-white"
+            >
+              {linkCopied ? "Link Copied" : "    Share results"}
+            </button>
+          </span>
         </div>
       )}
     </div>
-  )
+  );
 }

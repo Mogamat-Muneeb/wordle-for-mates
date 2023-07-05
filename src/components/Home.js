@@ -34,7 +34,7 @@ const Home = () => {
         <span className="text-[#5ac85a] font-bold px-1">{createName}'s</span> 5
         letter word!
       </p>
-      {solution && <Wordle solution={solution} guess={encryptedWord} />}
+      {solution && <Wordle solution={solution} guess={encryptedWord} createName={createName} />}
     </div>
   );
 };
