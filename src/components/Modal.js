@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Modal({ isCorrect, solution, turn, createName }) {
   const [linkCopied, setLinkCopied] = useState(false);
+  const navigate = useNavigate();
+  const createAWord = () => {
+    navigate("/");
+    window.location.reload();
+  };
   const shareResult = () => {
     navigator.clipboard
       .writeText(
-        ` I found the solution in ${turn} ${turn > 1 ? "guesses" : "guess"} on https://wordle-for-mates.vercel.app`
+        ` I found the solution in ${turn} ${
+          turn > 1 ? "guesses" : "guess"
+        } on https://wordle-for-mates.vercel.app`
       )
       .then(() => {
         setLinkCopied(true);
@@ -30,12 +37,12 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
             {turn > 1 ? "guesses" : "guess"}
           </p>
           <span className="flex flex-col items-center justify-center gap-4 md:flex-row">
-            <Link
-              to="/"
+            <button
+              onClick={createAWord}
               className="text-[14px] bg-[#5ac85a] py-2 px-4 rounded  text-white"
             >
               Creat a word
-            </Link>
+            </button>
             <button
               onClick={shareResult}
               className="text-[14px] bg-[#e2cc68] py-2 px-4 rounded  text-white"
@@ -54,12 +61,12 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
           </p>
           <p className="text-[14px]"> Better luck next time!!</p>
           <span className="flex flex-col items-center justify-center gap-4 md:flex-row">
-            <Link
-              to="/"
+            <button
+              onClick={createAWord}
               className="text-[14px] bg-[#5ac85a] py-2 px-4 rounded  text-white"
             >
               Creat a word
-            </Link>
+            </button>
             <button
               onClick={shareResult}
               className="text-[14px] bg-[#e2cc68] py-2 px-4 rounded  text-white"
