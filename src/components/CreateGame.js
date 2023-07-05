@@ -6,10 +6,9 @@ import {
   FacebookShareButton,
   WhatsappShareButton,
   TwitterShareButton,
-  InstapaperShareButton,
 } from "react-share";
-import { FaFacebook, FaWhatsapp, FaTwitter, FaInstagram } from "react-icons/fa";
-import ReactGA from "react-ga"
+import { FaFacebook, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import ReactGA from "react-ga";
 const CreateGame = () => {
   const [word, setWord] = useState("");
   const [name, setName] = useState("");
@@ -26,9 +25,8 @@ const CreateGame = () => {
   // };
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname)
-  }, [])
-  
+    ReactGA.pageview(window.location.pathname);
+  }, []);
 
   const handleWordChange = (event) => {
     const newWord = event.target.value;
@@ -50,11 +48,19 @@ const CreateGame = () => {
   };
 
   const generateLink = () => {
-    if (word.trim() === "" || name.trim() === "") {
-      toast.error("Please enter both a word and a name.");
+    if (word.trim() === "") {
+      toast.error("Please enter both a word!");
       return;
     }
- 
+    if (name.trim() === "") {
+      toast.error("Please enter both  a name!");
+      return;
+    }
+    if (word.length > 5) {
+      toast.error("Please enter a 5 letter word!");
+      return;
+    }
+
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
@@ -65,12 +71,9 @@ const CreateGame = () => {
 
     ReactGA.event({
       category: link,
-      /** The type of interaction (e.g. 'play') */
       action: "user generate link ",
-      /** Useful for categorizing events (e.g. 'Fall Campaign') */
       label: "user label",
-      /** A numeric value associated with the event (e.g. 42) */
-    })
+    });
 
     toast.success("Link is copied!");
 
