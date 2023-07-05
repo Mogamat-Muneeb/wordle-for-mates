@@ -31,7 +31,7 @@ const Home = () => {
       </button>
       <p className="py-4 font-medium">
         You have 6 tries to guess
-        <span className="text-[#5ac85a] font-extrabold px-1">{createName}'s</span> 5
+        <span className="text-[#5ac85a] font-bold px-1">{createName}'s</span> 5
         letter word!
       </p>
       {solution && <Wordle solution={solution} guess={encryptedWord} />}
