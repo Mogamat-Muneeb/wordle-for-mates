@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import sjcl from "sjcl";
 import { toast } from "react-toastify";
 import englishWords from "an-array-of-english-words";
+import {
+  FacebookShareButton,
+  WhatsappShareButton,
+  TwitterShareButton,
+  InstapaperShareButton,
+} from "react-share";
+import { FaFacebook, FaWhatsapp, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const CreateGame = () => {
   const [word, setWord] = useState("");
   const [name, setName] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
-
+  const [link, setLink] = useState("");
   console.log("🚀 ~ file: CreateGame.js:5 ~ englishWords:", englishWords);
   // const handleWordChange = (event) => {
   //   const newWord = event.target.value;
@@ -46,9 +53,10 @@ const CreateGame = () => {
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
+    setLink(link);
 
     toast.success("Link is copied!");
 
@@ -108,6 +116,19 @@ const CreateGame = () => {
           {linkCopied &&
             "A shareable link has been created and copied. Send it to your friends!"}
         </p>
+        {linkCopied && (
+          <div className="flex justify-center space-x-4">
+            <FacebookShareButton url={link}>
+              <FaFacebook size={23} className="hover:text-[#5ac85a]" />
+            </FacebookShareButton>
+            <WhatsappShareButton url={link}>
+              <FaWhatsapp size={23} className="hover:text-[#5ac85a]" />
+            </WhatsappShareButton>
+            <TwitterShareButton url={link}>
+              <FaTwitter size={23} className="hover:text-[#5ac85a]" />
+            </TwitterShareButton>
+          </div>
+        )}
       </form>
     </div>
   );
