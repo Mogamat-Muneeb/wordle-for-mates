@@ -15,7 +15,6 @@ const CreateGame = () => {
   const [name, setName] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
   const [link, setLink] = useState("");
-  console.log("🚀 ~ file: CreateGame.js:5 ~ englishWords:", englishWords);
   // const handleWordChange = (event) => {
   //   const newWord = event.target.value;
   //   console.log("🚀 ~ file: CreateGame.js:14 ~ handleWordChange ~ newWord:", newWord)

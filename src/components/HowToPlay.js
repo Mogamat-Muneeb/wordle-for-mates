@@ -1,15 +1,14 @@
 import React from "react";
 
 const HowToPlay = (props) => {
-  console.log("🚀 ~ file: HowToPlay.js:4 ~ HowToPlay ~ props:", props);
   return (
     <div className="modal2">
       <div className="flex flex-col gap-3">
-        <span className="flex w-full items-center">
+        <span className="flex items-center w-full">
           <span className="flex items-center justify-center w-full">
             <p className="font-bold md:text-[20px] text-[16px]">How To Play</p>
           </span>
-          <span className=" flex items-end justify-end ">
+          <span className="flex items-end justify-end ">
             <button onClick={props.handleShow}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
