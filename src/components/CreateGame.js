@@ -49,11 +49,11 @@ const CreateGame = () => {
 
   const generateLink = () => {
     if (word.trim() === "") {
-      toast.error("Please enter both a word!");
+      toast.error("Please enter a word!");
       return;
     }
     if (name.trim() === "") {
-      toast.error("Please enter both  a name!");
+      toast.error("Please enter  a name!");
       return;
     }
     if (word.length > 5) {
