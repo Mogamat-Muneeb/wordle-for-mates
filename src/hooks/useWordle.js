@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import englishWords from "an-array-of-english-words";
+import englishWords from "../data/db.json";
 
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
@@ -44,7 +44,7 @@ const useWordle = (solution) => {
     if (currentGuess === solution) {
       setIsCorrect(true);
     }
-    if (!englishWords.includes(currentGuess.toLowerCase())) {
+    if (!englishWords.words.includes(currentGuess.toLowerCase())) {
       toast.error("Invalid word. Please enter a valid English word!");
       return;
     }

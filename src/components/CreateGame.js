@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import sjcl from "sjcl";
 import { toast } from "react-toastify";
-import englishWords from "an-array-of-english-words";
-
+import englishWords from "../data/db.json";
 import {
   FacebookShareButton,
   WhatsappShareButton,
@@ -25,6 +24,7 @@ const CreateGame = () => {
   //   }
   //   setWord(newWord);
   // };
+
 
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
@@ -64,7 +64,7 @@ const CreateGame = () => {
       return;
     }
 
-    if (!englishWords.includes(word)) {
+    if (!englishWords.words.includes(word)) {
       setErrorMessage("Invalid word. Please enter a valid English word.");
       return;
     }
