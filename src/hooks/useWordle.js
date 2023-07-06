@@ -9,7 +9,7 @@ const useWordle = (solution) => {
   const [history, setHistory] = useState([]); // each guess is a string
   const [isCorrect, setIsCorrect] = useState(false);
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'grey', b: 'green', c: 'yellow'} etc
-
+  const [errorMessage, setErrorMessage] = useState("");
   // format a guess into an array of letter objects
   // e.g. [{key: 'a', color: 'yellow'}]
   const formatGuess = () => {
@@ -44,13 +44,9 @@ const useWordle = (solution) => {
     if (currentGuess === solution) {
       setIsCorrect(true);
     }
-    // if (!englishWords.words.includes(currentGuess.toLowerCase())) {
-    //   toast.error("Invalid word. Please enter a valid English word!");
-    //   return;
-    // }
 
     if (!englishWords.words.includes(currentGuess.toLowerCase())) {
-      toast.error("Invalid word. Please enter a valid English word!");
+      setErrorMessage("Invalid word. Please enter a valid English word!");
       return;
     }
 
@@ -94,17 +90,17 @@ const useWordle = (solution) => {
     if (key === "Enter") {
       // only add guess if turn is less than 5
       if (turn > 5) {
-        toast.error("you used all your guesses!");
+        setErrorMessage("you used all your guesses!");
         return;
       }
       // do not allow duplicate words
       if (history.includes(currentGuess)) {
-        toast.error("you already tried that word.");
+        setErrorMessage("you already tried that word.");
         return;
       }
       // check word is 5 chars
       if (currentGuess.length !== 5) {
-        toast.error("word must be 5 chars.");
+        setErrorMessage("word must be 5 chars.");
         return;
       }
       const formatted = formatGuess();
@@ -121,7 +117,7 @@ const useWordle = (solution) => {
     }
   };
 
-  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup };
+  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup , errorMessage, setErrorMessage};
 };
 
 export default useWordle;

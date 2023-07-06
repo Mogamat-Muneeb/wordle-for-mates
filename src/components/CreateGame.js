@@ -43,21 +43,15 @@ const CreateGame = () => {
       return;
     }
 
-    // if (!englishWords.words.includes(word)) {
-    //   setErrorMessage("Invalid word. Please enter a valid English word.");
-    //   return;
-    // }
-
     if (!englishWords.words.includes(word.toLowerCase())) {
       setErrorMessage("Invalid word. Please enter a valid English word.");
       return;
     }
-    
 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
@@ -85,7 +79,7 @@ const CreateGame = () => {
     if (errorMessage) {
       timeoutId = setTimeout(() => {
         setErrorMessage(null);
-      }, 2000);
+      }, 1500);
     }
 
     return () => {
