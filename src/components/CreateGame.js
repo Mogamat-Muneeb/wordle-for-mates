@@ -38,7 +38,7 @@ const CreateGame = () => {
       setErrorMessage("Please enter  a name!");
       return;
     }
-    if (word.length < 5) {
+    if (word.length < 5 || word.length > 5 ) {
       setErrorMessage("Please enter a 5 letter word!");
       return;
     }
