@@ -44,10 +44,16 @@ const useWordle = (solution) => {
     if (currentGuess === solution) {
       setIsCorrect(true);
     }
+    // if (!englishWords.words.includes(currentGuess.toLowerCase())) {
+    //   toast.error("Invalid word. Please enter a valid English word!");
+    //   return;
+    // }
+
     if (!englishWords.words.includes(currentGuess.toLowerCase())) {
       toast.error("Invalid word. Please enter a valid English word!");
       return;
     }
+
     setGuesses((prevGuesses) => {
       let newGuesses = [...prevGuesses];
       newGuesses[turn] = formattedGuess;

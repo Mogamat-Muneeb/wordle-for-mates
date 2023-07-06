@@ -43,10 +43,16 @@ const CreateGame = () => {
       return;
     }
 
-    if (!englishWords.words.includes(word)) {
+    // if (!englishWords.words.includes(word)) {
+    //   setErrorMessage("Invalid word. Please enter a valid English word.");
+    //   return;
+    // }
+
+    if (!englishWords.words.includes(word.toLowerCase())) {
       setErrorMessage("Invalid word. Please enter a valid English word.");
       return;
     }
+    
 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
