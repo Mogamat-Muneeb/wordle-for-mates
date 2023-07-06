@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import sjcl from "sjcl";
-import { toast } from "react-toastify";
 import englishWords from "../data/db.json";
 import {
   FacebookShareButton,
@@ -9,12 +8,14 @@ import {
 } from "react-share";
 import { FaFacebook, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import ReactGA from "react-ga";
+
 const CreateGame = () => {
   const [word, setWord] = useState("");
   const [name, setName] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
   const [link, setLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
   }, []);
@@ -35,11 +36,12 @@ const CreateGame = () => {
     }
 
     if (name.trim() === "") {
-      setErrorMessage("Please enter  a name!");
+      setErrorMessage("Please enter a name!");
       return;
     }
-    if (word.length < 5 || word.length > 5 ) {
-      setErrorMessage("Please enter a 5 letter word!");
+
+    if (word.length !== 5) {
+      setErrorMessage("Please enter a 5-letter word!");
       return;
     }
 
@@ -51,18 +53,16 @@ const CreateGame = () => {
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
 
     ReactGA.event({
       category: link,
-      action: "user generate link ",
+      action: "user generate link",
       label: "user label",
     });
-
-    // toast.success("Link is copied!");
 
     navigator.clipboard
       .writeText(link)
@@ -73,6 +73,7 @@ const CreateGame = () => {
         console.error("Failed to copy the link to the clipboard:", error);
       });
   };
+
   useEffect(() => {
     let timeoutId;
 
@@ -86,6 +87,24 @@ const CreateGame = () => {
       clearTimeout(timeoutId);
     };
   }, [errorMessage]);
+
+  const wordInputRef = useRef(null);
+  const nameInputRef = useRef(null);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      if (event.target === wordInputRef.current) {
+        nameInputRef.current.focus();
+      } else if (event.target === nameInputRef.current) {
+        if (word.trim() !== "" && name.trim() !== "") {
+          generateLink();
+        }
+      }
+    }
+  };
+
   return (
     <div>
       <p className="font-extrabold text-[20px] text-[#212529] py-4">
@@ -117,6 +136,8 @@ const CreateGame = () => {
           value={word}
           onChange={handleWordChange}
           disabled={linkCopied ? true : false}
+          onKeyDown={handleKeyDown}
+          ref={wordInputRef}
           className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white uppercase"
         />
         <input
@@ -125,6 +146,8 @@ const CreateGame = () => {
           value={name}
           onChange={handleNameChange}
           disabled={linkCopied ? true : false}
+          onKeyDown={handleKeyDown}
+          ref={nameInputRef}
           className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white "
           style={{ textTransform: "capitalize" }}
         />

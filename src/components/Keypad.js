@@ -73,7 +73,7 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
                           height="20"
                           viewBox="0 0 24 24"
                           width="20"
-                          class="game-icon"
+                          className="game-icon"
                           data-testid="icon-backspace"
                         >
                           <path
