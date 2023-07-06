@@ -52,9 +52,7 @@ const CreateGame = () => {
       toast.error("Please enter a word!");
       return;
     }
-    console.log("====================================");
-    console.log(word);
-    console.log("====================================");
+
     if (name.trim() === "") {
       toast.error("Please enter  a name!");
       return;
