@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import sjcl from "sjcl";
 import { toast } from "react-toastify";
 import englishWords from "an-array-of-english-words";
+
 import {
   FacebookShareButton,
   WhatsappShareButton,
@@ -14,11 +15,12 @@ const CreateGame = () => {
   const [name, setName] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
   const [link, setLink] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   // const handleWordChange = (event) => {
   //   const newWord = event.target.value;
   //   console.log("🚀 ~ file: CreateGame.js:14 ~ handleWordChange ~ newWord:", newWord)
   //   if (newWord.length > 5) {
-  //     toast.error("Word should not exceed 5 letters.");
+  //     setErrorMessage("Word should not exceed 5 letters.");
   //     return;
   //   }
   //   setWord(newWord);
@@ -31,12 +33,12 @@ const CreateGame = () => {
   const handleWordChange = (event) => {
     const newWord = event.target.value;
     // if (newWord.length < 5) {
-    //   toast.error("Word should not exceed 5 letters.");
+    //   setErrorMessage("Word should not exceed 5 letters.");
     //   return;
     // }
 
     // if (newWord.length === 5 && !englishWords.includes(newWord)) {
-    //   toast.error("Invalid word. Please enter a valid English word.");
+    //   setErrorMessage("Invalid word. Please enter a valid English word.");
     //   return;
     // }
 
@@ -49,21 +51,21 @@ const CreateGame = () => {
 
   const generateLink = () => {
     if (word.trim() === "") {
-      toast.error("Please enter a word!");
+      setErrorMessage("Please enter a word!");
       return;
     }
 
     if (name.trim() === "") {
-      toast.error("Please enter  a name!");
+      setErrorMessage("Please enter  a name!");
       return;
     }
     if (word.length < 5) {
-      toast.error("Please enter a 5 letter word!");
+      setErrorMessage("Please enter a 5 letter word!");
       return;
     }
 
     if (!englishWords.includes(word)) {
-      toast.error("Invalid word. Please enter a valid English word.");
+      setErrorMessage("Invalid word. Please enter a valid English word.");
       return;
     }
 
@@ -92,7 +94,19 @@ const CreateGame = () => {
         console.error("Failed to copy the link to the clipboard:", error);
       });
   };
+  useEffect(() => {
+    let timeoutId;
 
+    if (errorMessage) {
+      timeoutId = setTimeout(() => {
+        setErrorMessage(null);
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [errorMessage]);
   return (
     <div>
       <p className="font-extrabold text-[20px] text-[#212529] py-4">
@@ -108,7 +122,16 @@ const CreateGame = () => {
       <p className="font-extrabold text-[16px] text-[#212529]">
         Enter a 5 letter word to get started.
       </p>
-      <form className="w-10/12 max-w-md pb-24 mx-auto mt-16 space-y-8 text-center">
+
+      {errorMessage && (
+        <div className="w-10/12 max-w-md pt-10 mx-auto text-center">
+          <span className="bg-[#FFDDDD] text-[#C30000]  flex justify-center items-center w-full p-2 rounded text-[14px]">
+            {errorMessage}
+          </span>
+        </div>
+      )}
+
+      <form className="w-10/12 max-w-md pb-24 mx-auto mt-12 space-y-8 text-center">
         <input
           type="text"
           placeholder="Enter a word"
