@@ -15,33 +15,12 @@ const CreateGame = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   const [link, setLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // const handleWordChange = (event) => {
-  //   const newWord = event.target.value;
-  //   console.log("🚀 ~ file: CreateGame.js:14 ~ handleWordChange ~ newWord:", newWord)
-  //   if (newWord.length > 5) {
-  //     setErrorMessage("Word should not exceed 5 letters.");
-  //     return;
-  //   }
-  //   setWord(newWord);
-  // };
-
-
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
   }, []);
 
   const handleWordChange = (event) => {
     const newWord = event.target.value;
-    // if (newWord.length < 5) {
-    //   setErrorMessage("Word should not exceed 5 letters.");
-    //   return;
-    // }
-
-    // if (newWord.length === 5 && !englishWords.includes(newWord)) {
-    //   setErrorMessage("Invalid word. Please enter a valid English word.");
-    //   return;
-    // }
-
     setWord(newWord);
   };
 
@@ -72,7 +51,7 @@ const CreateGame = () => {
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
