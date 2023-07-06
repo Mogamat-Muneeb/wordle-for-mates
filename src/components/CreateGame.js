@@ -8,6 +8,7 @@ import {
 } from "react-share";
 import { FaFacebook, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import ReactGA from "react-ga";
+import { Link } from "react-router-dom";
 
 const CreateGame = () => {
   const [word, setWord] = useState("");
@@ -109,12 +110,13 @@ const CreateGame = () => {
     <div>
       <p className="font-extrabold text-[20px] text-[#212529] py-4">
         Create a
-        <a
-          href="https://www.nytimes.com/games/wordle/index.html"
+        <Link
+          target="_blank"
+          to="https://www.nytimes.com/games/wordle/index.html"
           className="px-2 underline text-[#5ac85a]"
         >
           Wordle
-        </a>
+        </Link>
         game using your word!
       </p>
       <p className="font-extrabold text-[16px] text-[#212529]">
@@ -151,7 +153,8 @@ const CreateGame = () => {
           className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white "
           style={{ textTransform: "capitalize" }}
         />
-        <p
+        <button
+        type="button"
           onClick={generateLink}
           className={
             linkCopied
@@ -160,7 +163,7 @@ const CreateGame = () => {
           }
         >
           {linkCopied ? "Link Copied" : "Create Link"}
-        </p>
+        </button>
         <p className="mt-10">
           {linkCopied &&
             "A shareable link has been created and copied. Send it to your friends!"}
