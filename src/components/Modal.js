@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Modal({ isCorrect, solution, turn, createName }) {
   const [linkCopied, setLinkCopied] = useState(false);
@@ -27,10 +27,11 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
       {isCorrect && (
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="font-bold text-[#5ac85a]">You Win!</h1>
-          <p className="text-[14px]">
-            {createName}'s word was
+          {/* <p className="text-[14px]">
+            {createName.charAt(0).toUpperCase() + createName.slice(1)}'s word
+            was
             <span className="font-semibold text-[#5ac85a] "> {solution}</span>
-          </p>
+          </p> */}
           <p className="text-[14px]">
             You found the solution in
             <span className="font-semibold text-[#5ac85a]"> {turn} </span>
@@ -56,7 +57,8 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="font-bold text-[#ff2f00]">You Lost!</h1>
           <p className="text-[14px]">
-            {createName}'s word was
+            {createName.charAt(0).toUpperCase() + createName.slice(1)}'s word
+            was
             <span className="font-semibold text-[#ff2f00] "> {solution}</span>
           </p>
           <p className="text-[14px]"> Better luck next time!!</p>

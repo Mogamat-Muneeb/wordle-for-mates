@@ -50,8 +50,8 @@ const CreateGame = () => {
 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
-    const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
+    const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
@@ -62,7 +62,7 @@ const CreateGame = () => {
       label: "user label",
     });
 
-    toast.success("Link is copied!");
+    // toast.success("Link is copied!");
 
     navigator.clipboard
       .writeText(link)
@@ -125,7 +125,8 @@ const CreateGame = () => {
           value={name}
           onChange={handleNameChange}
           disabled={linkCopied ? true : false}
-          className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white uppercase"
+          className="w-full p-4 text-xl font-bold text-center text-black rounded outline-none bg-[#eee] placeholder:text-white "
+          style={{ textTransform: "capitalize" }}
         />
         <p
           onClick={generateLink}

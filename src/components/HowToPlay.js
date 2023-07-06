@@ -31,7 +31,7 @@ const HowToPlay = (props) => {
           <p className=" text-[14px]">
             You have 6 tries to guess
             <span className="text-[#5ac85a] font-extrabold px-1">
-              {props.createName}'s
+              {props.createName.charAt(0).toUpperCase() + props.createName.slice(1)}'s
             </span>
             secret word! All guesses must be valid, English words. For example,
             if the secret word is CONES, and your first guess is CHAIR, you will
