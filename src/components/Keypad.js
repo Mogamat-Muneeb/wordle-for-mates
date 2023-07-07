@@ -49,30 +49,34 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
   };
 
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center mt-20 md:mt-10 keypad">
+    < >
+      <div className="mt-5 keypad">
         {letters &&
           letters.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex mx-4 items center">
+            <div
+              key={rowIndex}
+              className="flex justify-center text-center  w-full  items center gap-2 max-w-[500px] mx-auto m-2  px-3"
+            >
               {row.map((letter) => {
                 const color = usedKeys[letter.key];
                 return (
                   <div
                     key={letter.key}
-                    className={`${color}  ${
-                      letter.key === "Enter" || letter.key === "Backspace"
-                        ? "md:w-[100px] w-[60px] flex items-center justify-center"
-                        : "md:w-[40px] w-[30px] flex items-center justify-center"
-                    } md:m-[5px] m-[4.5px] cursor-pointer   `}
+                    className={`${color}  
+                     ${
+                       letter.key === "Enter" || letter.key === "Backspace"
+                         ? "md:w-[100px] w-[50px] flex items-center justify-center"
+                         : "md:w-[40px] w-[25px] flex items-center justify-center"
+                     }  cursor-pointer px-4 py-4  `}
                     onClick={() => handleClick(letter.key)}
                   >
                     <div className="flex items-center justify-center">
                       {letter.key === "Backspace" ? (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          height="20"
+                          height="23"
                           viewBox="0 0 24 24"
-                          width="20"
+                          width="40"
                           className="game-icon"
                           data-testid="icon-backspace"
                         >
@@ -91,6 +95,6 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
             </div>
           ))}
       </div>
-    </div>
+    </>
   );
 }

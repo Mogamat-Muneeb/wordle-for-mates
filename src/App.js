@@ -26,10 +26,10 @@ function App() {
   // }, [setSolution, words]);
 
   return (
-    <div className="px-4 md:px-0 App">
+    <div className="App">
       <Router>
         <Header />
-        <div className="pt-16">
+        <div className="h-full pt-16 overflow-y-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/with-a-friend" element={<CreateGame />} />

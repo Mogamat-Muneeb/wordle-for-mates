@@ -62,12 +62,16 @@ body {
 .row.current > div.filled {
   animation: bounce 0.2s ease-in-out forwards;
 }
-
+.keypad {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 .keypad > div > div {
   background: #eee;
   /* display: inline-block; */
   border-radius: 6px;
-  line-height: 50px;
+  /* line-height: 50px; */
+ 
 }
 .keypad > div > div.green {
   background: #5ac85a;

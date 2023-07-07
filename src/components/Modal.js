@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Modal({ isCorrect, solution, turn, createName }) {
   const [linkCopied, setLinkCopied] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathName = location.pathname;
   const createAWord = () => {
     navigate("/");
     window.location.reload();
@@ -42,7 +44,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
               onClick={createAWord}
               className="text-[14px] bg-[#5ac85a] py-2 px-4 rounded  text-white"
             >
-              Creat a word
+              {pathName === "/wordle-single" ? "Play again" : "Create a word"}
             </button>
             <button
               onClick={shareResult}
@@ -65,7 +67,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
             </p>
           ) : (
             <p className="text-[14px]">
-             The word was
+              The word was
               <span className="font-semibold text-[#ff2f00] "> {solution}</span>
             </p>
           )}
@@ -76,7 +78,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
               onClick={createAWord}
               className="text-[14px] bg-[#5ac85a] py-2 px-4 rounded  text-white"
             >
-              Creat a word
+              {pathName === "/wordle-single" ? "Play again" : "Create a word"}
             </button>
             <button
               onClick={shareResult}
