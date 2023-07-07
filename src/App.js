@@ -1,14 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import CreateGame from "./components/CreateGame";
-import Header from "./components/Header.js";
-import Footer from "./components/Footer.js";
-import Home from "./components/Home.js";
-import WordleSingle from "./components/WordleSingle.js";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import Home from "./components/Home.jsx";
+import WordleSingle from "./components/WordleSingle.jsx";
 import ReactGA from "react-ga";
 import WordleWithFriend from "./components/WordleWithFriend";
-import { useEffect, useState } from "react";
-import englishWords from "./data/db.json";
+import SignUp from "./components/SignUp";
+// import { useEffect, useState } from "react";
+// import englishWords from "./data/db.json";
 
 function App() {
   const TRACKING_ID = "UA-255216972-1";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/with-a-friend" element={<CreateGame />} />
             <Route path="/wordle" element={<WordleWithFriend />} />
+            <Route path="/auth" element={<SignUp />} />
             <Route
               path="/wordle-single"
               // element={solution && <WordleSingle solution={solution} />}
