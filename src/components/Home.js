@@ -1,50 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import sjcl from "sjcl";
-import Wordle from "./Wordle";
-import HowToPlay from "./HowToPlay";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const encryptedWord = params.get("word");
-  const createName = params.get("name");
-  const [solution, setSolution] = useState("");
-  const [show, setShow] = useState(false);
-  const handleShow = () => {
-    setShow(!show);
-  };
-  useEffect(() => {
-    const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
-    const decryptedWord = sjcl.decrypt(secretKey, encryptedWord);
-    setSolution(decryptedWord);
-  }, [encryptedWord]);
-
   return (
-    <div className="flex flex-col items-center justify-center">
-      {show && <HowToPlay handleShow={handleShow} createName={createName} />}
-      <button
-        onClick={handleShow}
-        className="font-bold md:text-[20px] text-[16px]"
-      >
-        How to play
-      </button>
-      {/* <p className="py-4 font-medium">
-        You have 6 tries to guess
-        <span className="text-[#5ac85a] font-bold px-1" >{createName}'s</span> 5
-        letter word!
-      </p> */}
-      <p className="py-4 font-medium">
-  You have 6 tries to guess
-  <span className="text-[#5ac85a] font-bold px-1">
-    {createName.charAt(0).toUpperCase() + createName.slice(1)}'s
-  </span>
-  5-letter word!
-</p>
-
-
-
-      {solution && <Wordle solution={solution} guess={encryptedWord} createName={createName} />}
+    <div className="flex flex-col items-center justify-between w-10/12 h-full max-w-md  mx-auto text-center pt-[20%]">
+      <p className=" p-4 md:text-2xl text-[20px] font-bold text-center text-[#212529]">
+        Get 6 chances to guess <br /> a 5-letter word.
+      </p>
+      <div className="flex flex-col w-full gap-4 md:flex-row">
+        <Link
+          to="/wordle-single"
+          className="w-full p-4 text-lg font-bold text-center text-white rounded outline-none hover:bg-[#5ac85a] bg-[#212529] cursor-pointer"
+        >
+          Wordle
+        </Link>
+        <Link
+          to="/with-a-friend"
+          className="w-full p-4 text-lg font-bold text-center text-white rounded outline-none hover:bg-[#5ac85a] bg-[#212529] cursor-pointer"
+        >
+          Wordle with a friend
+        </Link>
+      </div>
     </div>
   );
 };

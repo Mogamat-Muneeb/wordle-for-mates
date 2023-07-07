@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
-
-export default function Wordle({ solution, createName }) {
+import useWordleS from "../hooks/useWordleS";
+const WordleSingle = ({ solution }) => {
   const {
     currentGuess,
     guesses,
@@ -14,14 +13,18 @@ export default function Wordle({ solution, createName }) {
     handleKeyup,
     errorMessage,
     setErrorMessage,
-  } = useWordle(solution);
+  } = useWordleS(solution);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
 
-    if (isCorrect || turn > 5) {
-      setTimeout(() => setShowModal(true), 1500);
+    if (isCorrect) {
+      setTimeout(() => setShowModal(true), 2000);
+      window.removeEventListener("keyup", handleKeyup);
+    }
+    if (turn > 5) {
+      setTimeout(() => setShowModal(true), 2000);
       window.removeEventListener("keyup", handleKeyup);
     }
 
@@ -32,19 +35,6 @@ export default function Wordle({ solution, createName }) {
     handleKeyup({ key: letter });
   };
 
-  useEffect(() => {
-    let timeoutId;
-
-    if (errorMessage) {
-      timeoutId = setTimeout(() => {
-        setErrorMessage(null);
-      }, 1500);
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [errorMessage]);
   return (
     <div>
       {errorMessage && (
@@ -55,15 +45,12 @@ export default function Wordle({ solution, createName }) {
         </div>
       )}
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-      <Keypad usedKeys={usedKeys} handleLetterClick={handleLetterClick} />
+      <Keypad usedKeys={usedKeys}  handleLetterClick={handleLetterClick}/>
       {showModal && (
-        <Modal
-          isCorrect={isCorrect}
-          turn={turn}
-          solution={solution}
-          createName={createName}
-        />
+        <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}
     </div>
   );
-}
+};
+
+export default WordleSingle;

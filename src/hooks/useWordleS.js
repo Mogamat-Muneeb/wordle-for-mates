@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 import englishWords from "../data/db.json";
-
-const useWordle = (solution) => {
+const useWordleS = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([...Array(6)]);
@@ -43,7 +41,6 @@ const useWordle = (solution) => {
       setErrorMessage("Invalid word. Please enter a valid English word!");
       return;
     }
-
     setGuesses((prevGuesses) => {
       let newGuesses = [...prevGuesses];
       newGuesses[turn] = formattedGuess;
@@ -81,17 +78,17 @@ const useWordle = (solution) => {
   const handleKeyup = ({ key }) => {
     if (key === "Enter") {
       if (turn > 5) {
-        setErrorMessage("you used all your guesses!");
+        console.log("you used all your guesses!");
         return;
       }
 
       if (history.includes(currentGuess)) {
-        setErrorMessage("you already tried that word.");
+        console.log("you already tried that word.");
         return;
       }
 
       if (currentGuess.length !== 5) {
-        setErrorMessage("word must be 5 chars.");
+        console.log("word must be 5 chars.");
         return;
       }
       const formatted = formatGuess();
@@ -120,4 +117,4 @@ const useWordle = (solution) => {
   };
 };
 
-export default useWordle;
+export default useWordleS;
