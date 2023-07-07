@@ -35,6 +35,19 @@ const WordleSingle = ({ solution }) => {
     handleKeyup({ key: letter });
   };
 
+  useEffect(() => {
+    let timeoutId;
+
+    if (errorMessage) {
+      timeoutId = setTimeout(() => {
+        setErrorMessage(null);
+      }, 1500);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [errorMessage]);
   return (
     <div>
       {errorMessage && (
@@ -45,7 +58,7 @@ const WordleSingle = ({ solution }) => {
         </div>
       )}
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-      <Keypad usedKeys={usedKeys}  handleLetterClick={handleLetterClick}/>
+      <Keypad usedKeys={usedKeys} handleLetterClick={handleLetterClick} />
       {showModal && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}
