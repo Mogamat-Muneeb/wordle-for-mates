@@ -13,10 +13,9 @@ function Footer() {
             </Link>
           </span>
         </span>
-        <span>
-          <span className="font-bold">Bugs?</span> Please report at{" "}
-          <a href="https://wa.me/0761621649">0761621649</a>
-        </span>
+        <a href="https://wa.me/0761621649">
+          <span className="font-bold">Bugs? </span> Please report at 0761621649
+        </a>
       </p>
     </div>
   );
