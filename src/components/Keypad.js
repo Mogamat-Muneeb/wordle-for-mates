@@ -63,7 +63,7 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
                       letter.key === "Enter" || letter.key === "Backspace"
                         ? "md:w-[100px] w-[60px] flex items-center justify-center"
                         : "md:w-[40px] w-[30px] flex items-center justify-center"
-                    } md:m-[5px] m-[4.5px]   `}
+                    } md:m-[5px] m-[4.5px] cursor-pointer   `}
                     onClick={() => handleClick(letter.key)}
                   >
                     <div className="flex items-center justify-center">

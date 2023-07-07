@@ -12,7 +12,7 @@ const HowToPlay = (props) => {
             <button onClick={props.handleShow}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                classNAme="w-8 h-8"
+                className="w-7 h-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
