@@ -14,16 +14,16 @@ function App() {
   const TRACKING_ID = "UA-255216972-1";
   ReactGA.initialize(TRACKING_ID);
 
-  const [solution, setSolution] = useState(null);
+  // const [solution, setSolution] = useState(null);
 
-  const words = englishWords.words;
-  useEffect(() => {
-    let randomSolution = null;
-    do {
-      randomSolution = words[Math.floor(Math.random() * words.length)];
-    } while (randomSolution.length !== 5);
-    setSolution(randomSolution);
-  }, [setSolution, words]);
+  // const words = englishWords.words;
+  // useEffect(() => {
+  //   let randomSolution = null;
+  //   do {
+  //     randomSolution = words[Math.floor(Math.random() * words.length)];
+  //   } while (randomSolution.length !== 5);
+  //   setSolution(randomSolution);
+  // }, [setSolution, words]);
 
   return (
     <div className="px-4 md:px-0 App">
@@ -36,7 +36,8 @@ function App() {
             <Route path="/wordle" element={<WordleWithFriend />} />
             <Route
               path="/wordle-single"
-              element={solution && <WordleSingle solution={solution} />}
+              // element={solution && <WordleSingle solution={solution} />}
+              element={<WordleSingle />}
             />
           </Routes>
         </div>

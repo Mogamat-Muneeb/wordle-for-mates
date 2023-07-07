@@ -9,6 +9,14 @@ const useWordleS = (solution) => {
   const [usedKeys, setUsedKeys] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
+
+  const setGameState = (state) => {
+    setCurrentGuess(state.currentGuess);
+    setGuesses(state.guesses);
+    setTurn(state.turn);
+    setIsCorrect(state.isCorrect);
+    setUsedKeys(state.usedKeys);
+  };
   const formatGuess = () => {
     let solutionArray = [...solution];
     let formattedGuess = [...currentGuess].map((l) => {
@@ -114,6 +122,7 @@ const useWordleS = (solution) => {
     handleKeyup,
     errorMessage,
     setErrorMessage,
+    setGameState
   };
 };
 
