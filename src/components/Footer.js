@@ -14,7 +14,7 @@ function Footer() {
           </span>
         </span>
         <span>
-          <span className="font-bold">Bugs?</span> please report at{" "}
+          <span className="font-bold">Bugs?</span> Please report at{" "}
           <a href="https://wa.me/0761621649">0761621649</a>
         </span>
       </p>
