@@ -77,6 +77,7 @@ import englishWords from "../data/db.json";
 
 const WordleSingle = () => {
   const [solution, setSolution] = useState(null);
+  // console.log("🚀 ~ file: WordleSingle.js:80 ~ WordleSingle ~ solution:", solution)
 
   const {
     currentGuess,

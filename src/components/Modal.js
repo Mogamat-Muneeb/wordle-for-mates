@@ -56,11 +56,20 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
       {!isCorrect && (
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="font-bold text-[#ff2f00]">You Lost!</h1>
-          <p className="text-[14px]">
-            {createName.charAt(0).toUpperCase() + createName.slice(1)}'s word
-            was
-            <span className="font-semibold text-[#ff2f00] "> {solution}</span>
-          </p>
+
+          {createName ? (
+            <p className="text-[14px]">
+              {createName.charAt(0).toUpperCase() + createName.slice(1)}'s word
+              was
+              <span className="font-semibold text-[#ff2f00] "> {solution}</span>
+            </p>
+          ) : (
+            <p className="text-[14px]">
+             The word was
+              <span className="font-semibold text-[#ff2f00] "> {solution}</span>
+            </p>
+          )}
+
           <p className="text-[14px]"> Better luck next time!!</p>
           <span className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <button
