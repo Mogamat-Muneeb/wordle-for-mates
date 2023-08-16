@@ -8,6 +8,7 @@ import WordleSingle from "./components/WordleSingle.jsx";
 import ReactGA from "react-ga";
 import WordleWithFriend from "./components/WordleWithFriend";
 import SignUp from "./components/SignUp";
+import { AuthContextProvider } from "./context";
 // import { useEffect, useState } from "react";
 // import englishWords from "./data/db.json";
 
@@ -28,23 +29,25 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <div className="h-full pt-16 overflow-y-auto">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/with-a-friend" element={<CreateGame />} />
-            <Route path="/wordle" element={<WordleWithFriend />} />
-            <Route path="/auth" element={<SignUp />} />
-            <Route
-              path="/wordle-single"
-              // element={solution && <WordleSingle solution={solution} />}
-              element={<WordleSingle />}
-            />
-          </Routes>
-        </div>
-        <Footer />
-      </Router>
+      <AuthContextProvider>
+        <Router>
+          <Header />
+          <div className="h-full pt-16 overflow-y-auto">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/with-a-friend" element={<CreateGame />} />
+              <Route path="/wordle" element={<WordleWithFriend />} />
+              <Route path="/auth" element={<SignUp />} />
+              <Route
+                path="/wordle-single"
+                // element={solution && <WordleSingle solution={solution} />}
+                element={<WordleSingle />}
+              />
+            </Routes>
+          </div>
+          <Footer />
+        </Router>
+      </AuthContextProvider>
     </div>
   );
 }

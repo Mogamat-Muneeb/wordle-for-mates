@@ -18,7 +18,6 @@ const SignUp = () => {
     let result;
     if (providerType === "google") {
       result = await signInWithPopup(auth, provider);
-      console.log(result, "result goodle");
     } else if (providerType === "email") {
       result = await createUserWithEmailAndPassword(auth, email, password);
     }
@@ -51,8 +50,8 @@ const SignUp = () => {
               <GoogleIcon />
               <span>Sign in with Google</span>
             </button>
-            <span>-or-</span>
-            <div className="w-[300px] flex justify-center">
+            {/* <span>-or-</span> */}
+            {/* <div className="w-[300px] flex justify-center">
               <div className="flex flex-col gap-3">
                 <input
                   type="email"
@@ -73,7 +72,7 @@ const SignUp = () => {
                   Sign in with Email
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
