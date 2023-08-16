@@ -9,6 +9,7 @@ import ReactGA from "react-ga";
 import WordleWithFriend from "./components/WordleWithFriend";
 import { useEffect, useState } from "react";
 import englishWords from "./data/db.json";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const TRACKING_ID = "UA-255216972-1";
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div className="App">
+      <Analytics />
       <Router>
         <Header />
         <div className="h-full pt-16 overflow-y-auto">
