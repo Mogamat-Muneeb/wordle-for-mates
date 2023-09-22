@@ -7,7 +7,6 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
   const location = useLocation();
   const pathName = location.pathname;
   const createAWord = () => {
-    // window.location.reload();
     navigate("/");
   };
   const shareResult = () => {
@@ -29,11 +28,6 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
       {isCorrect && (
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="font-bold text-[#5ac85a]">You Win!</h1>
-          {/* <p className="text-[14px]">
-            {createName.charAt(0).toUpperCase() + createName.slice(1)}'s word
-            was
-            <span className="font-semibold text-[#5ac85a] "> {solution}</span>
-          </p> */}
           <p className="text-[14px]">
             You found the solution in
             <span className="font-semibold text-[#5ac85a]"> {turn} </span>
