@@ -7,8 +7,8 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
   const location = useLocation();
   const pathName = location.pathname;
   const createAWord = () => {
+    // window.location.reload();
     navigate("/");
-    window.location.reload();
   };
   const shareResult = () => {
     navigator.clipboard
