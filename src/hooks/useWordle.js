@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 import englishWords from "../data/db.json";
 
 const useWordle = (solution) => {
