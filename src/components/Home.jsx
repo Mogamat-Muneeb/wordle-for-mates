@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-between w-10/12 h-full max-w-md  mx-auto text-center pt-[20%]">
+    <div className="flex flex-col items-center justify-between w-10/12 h-full max-w-md  mx-auto text-center pt-[15%]">
       <p className=" px-4 pt-4 pb-2  md:text-xl text-[16px] font-extrabold text-center text-[#212529]">
         Get 6 chances to guess <br /> a 5-letter word.
       </p>
