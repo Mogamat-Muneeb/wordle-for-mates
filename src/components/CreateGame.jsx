@@ -54,7 +54,7 @@ const CreateGame = () => {
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
@@ -154,12 +154,12 @@ const CreateGame = () => {
           style={{ textTransform: "capitalize" }}
         />
         <button
-        type="button"
+          type="button"
           onClick={generateLink}
           className={
             linkCopied
               ? "w-full p-4 text-lg font-bold text-center text-white rounded outline-none bg-[#5ac85a] cursor-not-allowed"
-              : "w-full p-4 text-lg font-bold text-center text-white rounded outline-none bg-[#212529] cursor-pointer"
+              : "w-full p-4 text-lg font-bold text-center text-white rounded outline-none transition-all duration-300 hover:bg-[#5ac85a] bg-[#212529] cursor-pointer"
           }
         >
           {linkCopied ? "Link Copied" : "Create Link"}
