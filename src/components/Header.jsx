@@ -16,8 +16,8 @@ function Header() {
     }
   };
   return (
-    <div className="z-[1000]">
-      <div className="z-[1000]p-1 bg-white border-b-[1px] border-[#eee] w-full fixed right-0 left-0 flex justify-between items-center max-w-[1280px]  mx-auto">
+    <div className="z-[1000] bg-white border-b-[1px] border-[#eee] fixed right-0 left-0 ">
+      <div className="z-[1000] p-1  w-full flex justify-between items-center max-w-[1280px]  mx-auto">
         <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
           {pathName === "/wordle-single" || pathName === "/account" ? (
             <>
