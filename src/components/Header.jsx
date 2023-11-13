@@ -19,7 +19,7 @@ function Header() {
     <div className="z-[1000]">
       <div className="z-[1000]p-1 bg-white border-b-[1px] border-[#eee] w-full fixed right-0 left-0 flex justify-between items-center max-w-[1280px]  mx-auto">
         <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
-          {pathName === "/wordle-single" ? (
+          {pathName === "/wordle-single" || pathName === "/account" ? (
             <>
               <span className="text-[#5ac85a]">Wordle</span>
             </>
@@ -34,7 +34,9 @@ function Header() {
           {user ? (
             <>
               <div className="flex items-center justify-center gap-3">
-                <h2>{user?.displayName || ""}</h2>
+                <Link to="/account">
+                  <h2>{user?.displayName || ""}</h2>
+                </Link>
                 <button
                   onClick={signUserOut}
                   className="font-bold text-[16px] md:block hidden"

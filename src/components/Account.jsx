@@ -35,7 +35,7 @@ const Account = () => {
           </button>
         </div>
         {/* <div className="border-t border-gray-300 max-w-[600px] w-full mx-auto" /> */}
-        <div>
+        <div className="pt-16">
           {activeTab === "wordles" && <div>wordles</div>}
           {activeTab === "wordle-with-friends" && (
             <div>wordle-with-friends</div>
