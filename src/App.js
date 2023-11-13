@@ -8,6 +8,8 @@ import WordleSingle from "./components/WordleSingle.jsx";
 import ReactGA from "react-ga";
 import WordleWithFriend from "./components/WordleWithFriend";
 import { Analytics } from "@vercel/analytics/react";
+import { Login } from "./components/Login.jsx";
+
 
 function App() {
   const TRACKING_ID = "UA-255216972-1";
@@ -23,6 +25,7 @@ function App() {
             <Route path="/with-a-friend" element={<CreateGame />} />
             <Route path="/wordle" element={<WordleWithFriend />} />
             <Route path="/wordle-single" element={<WordleSingle />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
         <Footer />

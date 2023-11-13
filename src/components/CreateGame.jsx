@@ -53,8 +53,8 @@ const CreateGame = () => {
 
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
-    const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+    // const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
+    const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
