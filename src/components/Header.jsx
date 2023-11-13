@@ -1,22 +1,55 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../config/firebase";
+import { signOut } from "firebase/auth";
 
 function Header() {
   const location = useLocation();
   const pathName = location.pathname;
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  const signUserOut = async () => {
+    if (auth) {
+      await signOut(auth);
+      navigate("/");
+    }
+  };
   return (
     <div className="z-[1000]">
-      <h1 className="z-[1000] font-extrabold text-[30px] p-1 bg-white text-[#212529] border-b-[1px] border-[#eee] w-full fixed right-0 left-0">
-        {pathName === "/wordle-single" ? (
-          <>
-            <span className="text-[#5ac85a]">Wordle</span>
-          </>
-        ) : (
-          <>
-            <span className="text-[#5ac85a]">Wordle</span> for mates!
-          </>
-        )}
-      </h1>
+      <div className="z-[1000]p-1 bg-white border-b-[1px] border-[#eee] w-full fixed right-0 left-0 flex justify-between items-center max-w-[1280px]  mx-auto">
+        <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
+          {pathName === "/wordle-single" ? (
+            <>
+              <span className="text-[#5ac85a]">Wordle</span>
+            </>
+          ) : (
+            <>
+              <span className="text-[#5ac85a]">Wordle</span> for mates!
+            </>
+          )}
+        </h1>
+
+        <div>
+          {user ? (
+            <>
+              <div className="flex items-center justify-center gap-3">
+                <h2>{user?.displayName || ""}</h2>
+                <button
+                  onClick={signUserOut}
+                  className="font-bold text-[16px] md:block hidden"
+                >
+                  logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login or Register</Link>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

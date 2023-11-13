@@ -2,7 +2,7 @@ import { auth, provider, db } from "../config/firebase";
 import { sendEmailVerification, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { GoogleIcon } from "../components/icon";
+// import { GoogleIcon } from "../components/icon";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -28,9 +28,8 @@ export const Login = () => {
       <div className="flex flex-col items-center justify-center ">
         <div className="flex flex-col h-full gap-4 p-10">
           <div className="flex flex-col items-center justify-center gap-2">
-            <h1 className="font-bold text-[24px]">
-              Welcome to
-              <span className="text-[#ff3040] px-1">Circledop !!</span>
+            <h1 className="z-[1000] font-extrabold text-[30px] p-1 bg-white text-[#212529] border-b-[1px] border-[#eee] w-full fixed right-0 left-0">
+              <span className="text-[#5ac85a]">Wordle</span> for mates!
             </h1>
             <span className="text-[14px] font-medium">Easy Signup Now</span>
           </div>
@@ -39,7 +38,7 @@ export const Login = () => {
               onClick={signInWithGoogle}
               className="flex items-center justify-center w-full gap-3 py-3 "
             >
-              <GoogleIcon />
+              {/* <GoogleIcon /> */}
               Sign in or up with Google
             </button>
           </div>

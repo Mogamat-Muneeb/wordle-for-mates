@@ -9,6 +9,7 @@ import ReactGA from "react-ga";
 import WordleWithFriend from "./components/WordleWithFriend";
 import { Analytics } from "@vercel/analytics/react";
 import { Login } from "./components/Login.jsx";
+import Account from "./components/Account.jsx";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/wordle" element={<WordleWithFriend />} />
             <Route path="/wordle-single" element={<WordleSingle />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/account" element={<Account />} />
           </Routes>
         </div>
         <Footer />

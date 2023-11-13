@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { auth } from "../config/firebase";
-import { LoadingSpinner } from "../components/icon";
+// import { LoadingSpinner } from "../components/icon";
 const ProtectedRoute = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,8 @@ const ProtectedRoute = ({ children }) => {
     return (
       <div className="h-screen">
         <div className="flex items-center justify-center mt-32">
-          <LoadingSpinner />
+          {/* <LoadingSpinner /> */}
+          loadng...
         </div>
       </div>
     );
