@@ -24,7 +24,7 @@ function Header() {
             : "flex lg:flex-row flex-col"
         }`}
       >
-        <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
+        <h1 className=" font-extrabold text-[30px] text-[#212529]  cursor-pointer  ">
           {pathName === "/wordle-single" || pathName === "/account" ? (
             <>
               <Link to={"/"}>
@@ -34,7 +34,7 @@ function Header() {
           ) : (
             <Link to={"/"}>
               <span>
-                <span className="text-[#5ac85a]">Wordle</span> for mates!
+                <span className="text-[#5ac85a] ">Wordle</span> for mates!
               </span>
             </Link>
           )}
