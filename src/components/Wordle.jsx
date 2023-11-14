@@ -163,7 +163,7 @@ export default function Wordle({ solution, createName }) {
     try {
       // Check if there is a user (you need to replace this condition with your actual user check)
 
-      if (user && (isCorrect || turn > 5)) {
+      if (isCorrect || turn > 5) {
         const gamesRef = collection(db, "user-created-games");
         const querySnapshot = await getDocs(
           query(gamesRef, where("link", "==", window.location.href))

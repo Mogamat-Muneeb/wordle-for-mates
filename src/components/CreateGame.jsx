@@ -69,23 +69,25 @@ const CreateGame = () => {
       label: "user label",
     });
 
-    const currentDate = new Date().toISOString();
+    if (user) {
+      const currentDate = new Date().toISOString();
 
-    const gameData = {
-      guessingWord: word,
-      currentDate,
-      link,
-      userId: user.uid,
-    };
+      const gameData = {
+        guessingWord: word,
+        currentDate,
+        link,
+        userId: user.uid,
+      };
 
-    const gamesRef = collection(db, "user-created-games");
-    addDoc(gamesRef, gameData)
-      .then(() => {
-        console.log("Data saved to Firebase");
-      })
-      .catch((error) => {
-        console.error("Error saving data to Firebase:", error);
-      });
+      const gamesRef = collection(db, "user-created-games");
+      addDoc(gamesRef, gameData)
+        .then(() => {
+          console.log("Data saved to Firebase");
+        })
+        .catch((error) => {
+          console.error("Error saving data to Firebase:", error);
+        });
+    }
 
     navigator.clipboard
       .writeText(link)
