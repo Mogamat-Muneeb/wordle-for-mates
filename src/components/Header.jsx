@@ -21,7 +21,7 @@ function Header() {
         className={`z-[1000] p-1  w-full  justify-between items-center max-w-[1280px]  mx-auto ${
           pathName === "/wordle-single" || pathName === "/account"
             ? "flex "
-            : "flex flex-col"
+            : "flex lg:flex-row flex-col"
         }`}
       >
         <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
