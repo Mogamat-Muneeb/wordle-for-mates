@@ -27,12 +27,16 @@ function Header() {
         <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
           {pathName === "/wordle-single" || pathName === "/account" ? (
             <>
-              <span className="text-[#5ac85a]">Wordle</span>
+              <Link to={"/"}>
+                <span className="text-[#5ac85a]">Wordle</span>
+              </Link>
             </>
           ) : (
-            <>
-              <span className="text-[#5ac85a]">Wordle</span> for mates!
-            </>
+            <Link to={"/"}>
+              <span>
+                <span className="text-[#5ac85a]">Wordle</span> for mates!
+              </span>
+            </Link>
           )}
         </h1>
 
