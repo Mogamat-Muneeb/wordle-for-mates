@@ -28,7 +28,7 @@ export const Login = () => {
       <div className="flex flex-col items-center justify-center ">
         <div className="flex flex-col h-full gap-4 p-10">
           <div className="flex flex-col items-center justify-center gap-2">
-            <h1 className="z-[1000] font-extrabold text-[30px] p-1 bg-white text-[#212529] border-b-[1px] border-[#eee] w-full fixed right-0 left-0">
+            <h1 className=" font-extrabold text-[30px] text-[#212529]">
               <span className="text-[#5ac85a]">Wordle</span> for mates!
             </h1>
             <span className="text-[14px] font-medium">Easy Signup Now</span>

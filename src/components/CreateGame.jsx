@@ -9,6 +9,9 @@ import {
 import { FaFacebook, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import ReactGA from "react-ga";
 import { Link } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const CreateGame = () => {
   const [word, setWord] = useState("");
@@ -16,6 +19,7 @@ const CreateGame = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   const [link, setLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
@@ -64,6 +68,24 @@ const CreateGame = () => {
       action: "user generate link",
       label: "user label",
     });
+
+    const currentDate = new Date().toISOString();
+
+    const gameData = {
+      guessingWord: word,
+      currentDate,
+      link,
+      userId: user.uid,
+    };
+
+    const gamesRef = collection(db, "user-created-games");
+    addDoc(gamesRef, gameData)
+      .then(() => {
+        console.log("Data saved to Firebase");
+      })
+      .catch((error) => {
+        console.error("Error saving data to Firebase:", error);
+      });
 
     navigator.clipboard
       .writeText(link)

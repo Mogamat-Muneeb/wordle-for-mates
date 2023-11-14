@@ -68,12 +68,21 @@
 //   );
 // }
 
-
 import React, { useEffect, useState } from "react";
 import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
+import {
+  collection,
+  getDocs,
+  increment,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Wordle({ solution, createName }) {
   const {
@@ -88,7 +97,7 @@ export default function Wordle({ solution, createName }) {
     setGameState,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
-
+  const [user] = useAuthState(auth);
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
 
@@ -149,6 +158,47 @@ export default function Wordle({ solution, createName }) {
       localStorage.removeItem("wordleGameState");
     }
   }, []);
+
+  const updateGameDocument = async () => {
+    try {
+      // Check if there is a user (you need to replace this condition with your actual user check)
+
+      if (user && (isCorrect || turn > 5)) {
+        const gamesRef = collection(db, "user-created-games");
+        const querySnapshot = await getDocs(
+          query(gamesRef, where("link", "==", window.location.href))
+        );
+
+        if (!querySnapshot.empty) {
+          const docRef = querySnapshot.docs[0].ref;
+
+          // Get existing results array or create a new one
+          const existingResults = (
+            querySnapshot.docs[0].data().results || []
+          ).slice();
+
+          // Add the new result to the array
+          existingResults.push({
+            result: isCorrect ? "win" : "lose",
+            // playerName: "Anonymous", // You can add some default name for anonymous players
+          });
+
+          // Update the document with the updated results array and increased play count
+          await updateDoc(docRef, {
+            results: existingResults,
+          });
+
+          console.log("Document updated with results array and play count");
+        }
+      }
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
+
+  useEffect(() => {
+    updateGameDocument();
+  }, [isCorrect, turn]);
 
   return (
     <div>
