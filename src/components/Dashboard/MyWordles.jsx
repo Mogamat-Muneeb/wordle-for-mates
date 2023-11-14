@@ -83,7 +83,7 @@ const MyWordles = ({ gamesData, wins, losses, currentStreak, maxStreak }) => {
                 </p>
                 <h2
                   className={` font-semibold capitalize   ${
-                    game.result === "win" ? "text-[#5ac85a]" : "text-red-500"
+                    game.result === "win" ? "text-[#5ac85a]" : "text-red-600"
                   }`}
                 >
                   {game.result}
