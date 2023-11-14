@@ -29,7 +29,7 @@ const MyWordles = ({ gamesData, wins, losses, currentStreak, maxStreak }) => {
   return (
     <>
       <div className="flex flex-col items-start justify-start ">
-        <div className="flex flex-col items-start justify-start pt-5">
+        <div className="flex flex-col items-start justify-start ">
           <div className="flex items-end justify-start gap-6">
             <div className="flex flex-col-reverse items-center justify-center ">
               <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end ">
