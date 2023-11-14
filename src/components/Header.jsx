@@ -16,8 +16,14 @@ function Header() {
     }
   };
   return (
-    <div className="z-[1000] bg-white border-b-[1px] border-[#eee] fixed right-0 left-0 ">
-      <div className="z-[1000] p-1  w-full flex justify-between items-center max-w-[1280px]  mx-auto">
+    <div className="z-[1000] bg-white border-b-[1px] border-[#eee] fixed right-0 left-0 lg:px-0 px-4 ">
+      <div
+        className={`z-[1000] p-1  w-full  justify-between items-center max-w-[1280px]  mx-auto ${
+          pathName === "/wordle-single" || pathName === "/account"
+            ? "flex "
+            : "flex flex-col"
+        }`}
+      >
         <h1 className=" font-extrabold text-[30px] text-[#212529]  ">
           {pathName === "/wordle-single" || pathName === "/account" ? (
             <>
@@ -39,7 +45,7 @@ function Header() {
                 </Link>
                 <button
                   onClick={signUserOut}
-                  className="font-bold text-[16px] md:block hidden"
+                  className="font-bold text-[16px] "
                 >
                   logout
                 </button>

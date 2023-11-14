@@ -29,9 +29,6 @@ const MyWordles = ({ gamesData, wins, losses, currentStreak, maxStreak }) => {
   return (
     <>
       <div className="flex flex-col items-start justify-start ">
-        <h1 className="font-extrabold text-[24px] text-[#212529] ">
-          My Wordles
-        </h1>
         <div className="flex flex-col items-start justify-start pt-5">
           <div className="flex items-end justify-start gap-6">
             <div className="flex flex-col-reverse items-center justify-center ">

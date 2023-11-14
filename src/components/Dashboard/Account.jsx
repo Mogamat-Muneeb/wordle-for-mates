@@ -73,7 +73,7 @@ const Account = () => {
   return (
     <>
       <ProtectedRoute>
-        <div className="flex items-center justify-between  max-w-[1280px] w-full mx-auto">
+        <div className="lg:flex hidden items-center justify-between  max-w-[1280px] w-full mx-auto">
           <div className="">
             <h1 className=" text-[16px] lg:text-[20px]  font-bold">
               Statistics
@@ -84,7 +84,7 @@ const Account = () => {
             <p className="text-[14px]">{user?.email || ""}</p>
           </div>
         </div>
-        <div className="md:grid md:grid-cols-12 max-w-[1280px] w-full mx-auto">
+        <div className="md:grid md:grid-cols-12 max-w-[1280px] w-full mx-auto lg:p-0 p-4">
           <div className="flex flex-col items-start justify-start space-y-2 md:py-6 md:col-span-3 md:min-h-screen">
             <button
               onClick={() => toggleTab("wordles")}
