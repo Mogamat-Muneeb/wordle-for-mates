@@ -30,45 +30,45 @@ const MyWordles = ({ gamesData, wins, losses, currentStreak, maxStreak }) => {
     <>
       <div className="flex flex-col items-start justify-start ">
         <div className="flex flex-col items-start justify-start ">
-          <div className="flex items-end justify-start gap-6">
-            <div className="flex flex-col-reverse items-center justify-center ">
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end ">
-                Played
-              </p>
+          <div className="flex items-end justify-start gap-3 lg:gap-6">
+            <div className="flex flex-col items-center justify-center ">
               <p className="text-[24px] font-semibold flex justify-start items-start">
                 {gamesData.length}
               </p>
-            </div>
-            <div className="flex flex-col-reverse items-center justify-center ">
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
-                Wins
+              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end ">
+                Played
               </p>
+            </div>
+            <div className="flex flex-col items-center justify-center ">
               <p className="text-[24px] font-semibold flex justify-start items-start">
                 {wins}
               </p>
-            </div>
-            <div className="flex flex-col-reverse items-center justify-center ">
               <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
-                Losses
+                Wins
               </p>
+            </div>
+            <div className="flex flex-col items-center justify-center ">
               <p className="text-[24px] font-semibold flex justify-start items-start">
                 {losses}
               </p>
-            </div>
-            <div className="flex flex-col-reverse items-center justify-center ">
               <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
-                Current Streak
+                Losses
               </p>
+            </div>
+            <div className="flex flex-col items-center justify-center ">
               <p className="text-[24px] font-semibold flex justify-start items-start">
                 {currentStreak}
               </p>
-            </div>
-            <div className="flex flex-col-reverse items-center justify-center ">
               <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
-                Max Streak
+                Current Streak
               </p>
+            </div>
+            <div className="flex flex-col items-center justify-center ">
               <p className="text-[24px] font-semibold flex justify-start items-start">
                 {maxStreak}
+              </p>
+              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+                Max Streak
               </p>
             </div>
           </div>
