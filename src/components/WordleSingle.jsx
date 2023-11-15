@@ -22,7 +22,7 @@ const WordleSingle = () => {
     setErrorMessage,
     setGameState,
   } = useWordleS(solution);
-  console.log("🚀 ~ file: WordleSingle.jsx:174 ~ WordleSingle ~ solution:", solution)
+
   const [showModal, setShowModal] = useState(false);
 
   // Function to generate a random solution
@@ -45,17 +45,19 @@ const WordleSingle = () => {
   // Function to handle before unload event
   const handleBeforeUnload = (event) => {
     const gameState = {
-      solution,
       currentGuess,
       guesses,
       turn,
       isCorrect,
       usedKeys,
+      solution,
     };
     localStorage.setItem("wordleGameState", JSON.stringify(gameState));
 
     if (event.currentTarget.performance.navigation.type !== 1) {
-      localStorage.removeItem("wordleGameState");
+      setTimeout(() => {
+        localStorage.removeItem("wordleGameState");
+      }, 50);
       setSolution(null);
     }
   };
@@ -74,7 +76,9 @@ const WordleSingle = () => {
       const parsedState = JSON.parse(savedState);
       setSolution(parsedState.solution);
       setGameState(parsedState);
-      localStorage.removeItem("wordleGameState");
+      setTimeout(() => {
+        localStorage.removeItem("wordleGameState");
+      }, 50);
     }
   }, []);
 
@@ -124,7 +128,7 @@ const WordleSingle = () => {
         userId,
       });
     }
-  }, [isCorrect, turn, user , showModal]);
+  }, [isCorrect, turn, user, showModal]);
 
   return (
     <div>

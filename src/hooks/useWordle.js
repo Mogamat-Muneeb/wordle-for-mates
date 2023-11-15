@@ -11,6 +11,7 @@ const useWordle = (solution) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const setGameState = (state) => {
+    console.log("🚀 ~ file: useWordle.js:14 ~ setGameState ~ state:", state)
     setCurrentGuess(state.currentGuess);
     setGuesses(state.guesses);
     setTurn(state.turn);

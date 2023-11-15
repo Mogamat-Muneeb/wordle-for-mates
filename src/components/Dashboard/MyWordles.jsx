@@ -1,6 +1,69 @@
-import React from "react";
+import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../config/firebase";
 
-const MyWordles = ({ gamesData, wins, losses, currentStreak, maxStreak }) => {
+const MyWordles = () => {
+  const [user] = useAuthState(auth);
+
+  const [gamesData, setGamesData] = useState([]);
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
+  let currentStreak = 0;
+  let maxStreak = 0;
+
+  useEffect(() => {
+    const fetchGamesData = async () => {
+      try {
+        const userId = user?.uid;
+        const userGamesCollection = collection(db, "userGames");
+        const querySnapshot = await getDocs(userGamesCollection);
+
+        const games = [];
+        let winCount = 0;
+        let lossCount = 0;
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.userId === userId) {
+            games.push({
+              result: data.result,
+              timestamp: data.timestamp.toDate(),
+            });
+
+            if (data.result === "win") {
+              winCount++;
+            } else if (data.result === "lose") {
+              lossCount++;
+            }
+          }
+        });
+
+        setGamesData(games);
+        setWins(winCount);
+        setLosses(lossCount);
+      } catch (error) {
+        console.error("Error fetching games data:", error);
+      }
+    };
+
+    if (user) {
+      fetchGamesData();
+    }
+  }, [user]);
+
+  for (let i = 0; i < gamesData.length; i++) {
+    const result = gamesData[i].result;
+
+    if (result === "win") {
+      currentStreak++;
+    } else {
+      maxStreak = Math.max(maxStreak, currentStreak);
+      currentStreak = 0;
+    }
+  }
+
+  maxStreak = Math.max(maxStreak, currentStreak);
   let game = {
     timestamp: new Date(),
   };

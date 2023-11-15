@@ -1,74 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ProtectedRoute from "../ProtectedRoute";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../../config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { auth } from "../../config/firebase";
 import MyWordles from "./MyWordles";
+import WordleWithFriends from "./WordleWithFriends";
 
 const Account = () => {
   const [user] = useAuthState(auth);
   const [activeTab, setActiveTab] = useState("wordles");
-  const [gamesData, setGamesData] = useState([]);
-  const [wins, setWins] = useState(0);
-  const [losses, setLosses] = useState(0);
-  let currentStreak = 0;
-  let maxStreak = 0;
   const toggleTab = (tab) => {
     setActiveTab(tab);
   };
-
-  useEffect(() => {
-    const fetchGamesData = async () => {
-      try {
-        const userId = user?.uid;
-        const userGamesCollection = collection(db, "userGames");
-        const querySnapshot = await getDocs(userGamesCollection);
-
-        const games = [];
-        let winCount = 0;
-        let lossCount = 0;
-
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          if (data.userId === userId) {
-            games.push({
-              result: data.result,
-              timestamp: data.timestamp.toDate(),
-            });
-
-            if (data.result === "win") {
-              winCount++;
-            } else if (data.result === "lose") {
-              lossCount++;
-            }
-          }
-        });
-
-        setGamesData(games);
-        setWins(winCount);
-        setLosses(lossCount);
-      } catch (error) {
-        console.error("Error fetching games data:", error);
-      }
-    };
-
-    if (user) {
-      fetchGamesData();
-    }
-  }, [user]);
-
-  for (let i = 0; i < gamesData.length; i++) {
-    const result = gamesData[i].result;
-
-    if (result === "win") {
-      currentStreak++;
-    } else {
-      maxStreak = Math.max(maxStreak, currentStreak);
-      currentStreak = 0;
-    }
-  }
-
-  maxStreak = Math.max(maxStreak, currentStreak);
 
   return (
     <>
@@ -97,7 +39,9 @@ const Account = () => {
             <button
               onClick={() => toggleTab("wordle-with-friends")}
               className={` text-[16px] ${
-                activeTab === "wordle-with-friends" ? "font-bold text-[#5ac85a]" : ""
+                activeTab === "wordle-with-friends"
+                  ? "font-bold text-[#5ac85a]"
+                  : ""
               }`}
             >
               Wordle with friends
@@ -107,17 +51,13 @@ const Account = () => {
             <div className="">
               {activeTab === "wordles" && (
                 <>
-                  <MyWordles
-                    gamesData={gamesData}
-                    wins={wins}
-                    losses={losses}
-                    maxStreak={maxStreak}
-                    currentStreak={currentStreak}
-                  />
+                  <MyWordles />
                 </>
               )}
               {activeTab === "wordle-with-friends" && (
-                <div>wordle-with-friends</div>
+                <>
+                  <WordleWithFriends />
+                </>
               )}
             </div>
           </div>
