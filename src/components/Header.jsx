@@ -6,27 +6,36 @@ import { signOut } from "firebase/auth";
 import { TbLogout } from "react-icons/tb";
 import ReUsableModal from "./ReusableModal";
 import Account from "./Dashboard/Account";
+import { Login } from "./Login";
 
 function Header() {
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [showLogIn, setShowLogIn] = useState(false);
 
   const signUserOut = async () => {
     if (auth) {
       await signOut(auth);
-      navigate("/");
+      // navigate("/");
     }
   };
 
   const toggleModal = useCallback(() => {
     setShowModal((prevState) => !prevState);
   }, []);
+  const toggleModalLogIn = useCallback(() => {
+    setShowLogIn((prevState) => !prevState);
+  }, []);
   return (
     <>
       {showModal && (
         <ReUsableModal handleModalOpen={toggleModal}>
-          <Account  toggleModal={toggleModal}/>
+          <Account toggleModal={toggleModal} />
+        </ReUsableModal>
+      )}
+      {showLogIn && (
+        <ReUsableModal handleModalOpen={toggleModalLogIn}>
+          <Login />
         </ReUsableModal>
       )}
       <div className="z-[1000] bg-white border-b-[1px] border-[#eee] fixed right-0 left-0 lg:px-0 px-4 ">
@@ -72,7 +81,7 @@ function Header() {
               </>
             ) : (
               <>
-                <Link to="/login">Login or Register</Link>
+                <button onClick={toggleModalLogIn}>Login or Register</button>
               </>
             )}
           </div>

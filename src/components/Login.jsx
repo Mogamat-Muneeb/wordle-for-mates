@@ -24,7 +24,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center md:pt-[20%] pt-[60%] overflow-hidden">
+    <div className="flex items-center justify-center  overflow-hidden bg-white w-[350px] mx-auto h-[300px] rounded-lg">
       <div className="flex flex-col items-center justify-center ">
         <div className="flex flex-col h-full gap-4 ">
           <div className="flex flex-col items-center justify-center gap-2">
