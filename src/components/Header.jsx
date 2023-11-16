@@ -35,7 +35,7 @@ function Header() {
       )}
       {showLogIn && (
         <ReUsableModal handleModalOpen={toggleModalLogIn}>
-          <Login />
+          <Login toggleModalLogIn={toggleModalLogIn} />
         </ReUsableModal>
       )}
       <div className="z-[1000] bg-white border-b-[1px] border-[#eee] fixed right-0 left-0 lg:px-0 px-4 ">
@@ -60,11 +60,11 @@ function Header() {
                       className="rounded-full w-7 h-7 md:w-8 md:h-8"
                     />
                   </button>
-                  <Link to="/account">
+                  <button onClick={toggleModal}>
                     <h2 className="hidden md:block">
                       {user?.displayName || ""}
                     </h2>
-                  </Link>
+                  </button>
                   <button
                     onClick={signUserOut}
                     className="font-bold text-[16px] md:block hidden"
