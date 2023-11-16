@@ -95,42 +95,42 @@ const MyWordles = () => {
         <div className="flex flex-col items-start justify-start ">
           <div className="flex items-end justify-start gap-3 lg:gap-6">
             <div className="flex flex-col items-center justify-center ">
-              <p className="text-[24px] font-semibold flex justify-start items-start">
+              <p className="md:text-[24px] text-[20px] font-semibold flex justify-start items-start">
                 {gamesData.length}
               </p>
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end ">
+              <p className="font-medium md:text-[14px] text-[12px] text-[#212529] flex justify-end items-end ">
                 Played
               </p>
             </div>
             <div className="flex flex-col items-center justify-center ">
-              <p className="text-[24px] font-semibold flex justify-start items-start">
+              <p className="md:text-[24px] text-[20px] font-semibold flex justify-start items-start">
                 {wins}
               </p>
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+              <p className="font-medium md:text-[14px] text-[12px] text-[#212529] flex justify-end items-end">
                 Wins
               </p>
             </div>
             <div className="flex flex-col items-center justify-center ">
-              <p className="text-[24px] font-semibold flex justify-start items-start">
+              <p className="md:text-[24px] text-[20px] font-semibold flex justify-start items-start">
                 {losses}
               </p>
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+              <p className="font-medium md:text-[14px] text-[12px] text-[#212529] flex justify-end items-end">
                 Losses
               </p>
             </div>
             <div className="flex flex-col items-center justify-center ">
-              <p className="text-[24px] font-semibold flex justify-start items-start">
+              <p className="md:text-[24px] text-[20px] font-semibold flex justify-start items-start">
                 {currentStreak}
               </p>
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+              <p className="font-medium md:text-[14px] text-[12px] text-[#212529] flex justify-end items-end">
                 Current Streak
               </p>
             </div>
             <div className="flex flex-col items-center justify-center ">
-              <p className="text-[24px] font-semibold flex justify-start items-start">
+              <p className="md:text-[24px] text-[20px] font-semibold flex justify-start items-start">
                 {maxStreak}
               </p>
-              <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+              <p className="font-medium md:text-[14px] text-[12px] text-[#212529] flex justify-end items-end">
                 Max Streak
               </p>
             </div>

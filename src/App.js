@@ -27,7 +27,7 @@ function App() {
             <Route path="/wordle" element={<WordleWithFriend />} />
             <Route path="/wordle-single" element={<WordleSingle />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/account" element={<Account />} />
+            {/* <Route path="/account" element={<Account />} /> */}
           </Routes>
         </div>
         <Footer />

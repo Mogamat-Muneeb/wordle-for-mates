@@ -120,6 +120,7 @@ export default function Wordle({ solution, createName }) {
           // Add the new result to the array
           existingResults.push({
             result: isCorrect ? "win" : "lose",
+            isHowManyTurns: turn,
             // playerName: "Anonymous", // You can add some default name for anonymous players
           });
 
