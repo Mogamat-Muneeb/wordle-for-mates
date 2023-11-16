@@ -55,31 +55,59 @@ const WordleWithFriends = () => {
     };
 
     fetchGameData();
-  }, [userUid]); // Re-run the effect when the user UID changes
+  }, [userUid]);
 
   return (
-    <div>
-      <h1>Wordle With Friends</h1>
+    <div className="flex flex-col items-start justify-start">
+      <div className="flex items-end justify-start gap-3 lg:gap-6">
+        <div className="flex flex-col items-center justify-center ">
+          <p className="text-[24px] font-semibold flex justify-start items-start">
+            {gamesWon}
+          </p>
+          <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end ">
+            Games Won
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center ">
+          <p className="text-[24px] font-semibold flex justify-start items-start">
+            {gamesLost}
+          </p>
+          <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+            Games Lost
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center ">
+          <p className="text-[24px] font-semibold flex justify-start items-start">
+            {totalGames}
+          </p>
+          <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+            Total Games:
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center ">
+          <p className="text-[24px] font-semibold flex justify-start items-start">
+            {winPercentage}%
+          </p>
+          <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+            Win Percentage:
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center ">
+          <p className="text-[24px] font-semibold flex justify-start items-start">
+            {losePercentage}%
+          </p>
+          <p className="font-medium text-[14px] text-[#212529] flex justify-end items-end">
+            Lose Percentage:
+          </p>
+        </div>
+      </div>
       <div>
-        {/* Render other details from the gameData */}
-        <p>Game ID: {gameData.id}</p>
-        <p>Game Name: {gameData.name}</p>
-        {/* Render results array */}
-        <h2>Results</h2>
         <ul>
           {gameData.results &&
             gameData.results.map((result, index) => (
-              <li key={index}>{result.result}</li>
+              <li key={index}>{result.result} ss</li>
             ))}
         </ul>
-      </div>
-      {/* Display games won, lost, and percentages */}
-      <div>
-        <h2>Games Won: {gamesWon}</h2>
-        <h2>Games Lost: {gamesLost}</h2>
-        <h2>Total Games: {totalGames}</h2>
-        <h2>Win Percentage: {winPercentage}%</h2>
-        <h2>Lose Percentage: {losePercentage}%</h2>
       </div>
     </div>
   );

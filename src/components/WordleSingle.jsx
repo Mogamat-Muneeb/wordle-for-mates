@@ -10,6 +10,10 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const WordleSingle = () => {
   const [solution, setSolution] = useState(null);
+  console.log(
+    "🚀 ~ file: WordleSingle.jsx:13 ~ WordleSingle ~ solution:",
+    solution
+  );
   const [user] = useAuthState(auth);
   const {
     currentGuess,
@@ -119,16 +123,18 @@ const WordleSingle = () => {
     if (isGameOver && showModal && user) {
       const result = isCorrect ? "win" : "lose";
       const userId = user.uid;
+      const inHowManyTurns = turn;
 
       const userGamesCollection = collection(db, "userGames");
 
       addDoc(userGamesCollection, {
+        inHowManyTurns,
         result,
         timestamp: serverTimestamp(),
         userId,
       });
     }
-  }, [isCorrect, turn, user, showModal]);
+  }, [isCorrect, turn, user, showModal, guesses]);
 
   return (
     <div>
