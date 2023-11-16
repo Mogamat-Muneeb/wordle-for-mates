@@ -24,9 +24,9 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen overflow-hidden">
+    <div className="flex items-center justify-center md:pt-[20%] pt-[60%] overflow-hidden">
       <div className="flex flex-col items-center justify-center ">
-        <div className="flex flex-col h-full gap-4 p-10">
+        <div className="flex flex-col h-full gap-4 ">
           <div className="flex flex-col items-center justify-center gap-2">
             <h1 className=" font-extrabold text-[30px] text-[#212529]">
               <span className="text-[#5ac85a]">Wordle</span> for mates!
