@@ -7,8 +7,11 @@ const Home = () => {
       <p className=" px-4 pt-4 pb-2  md:text-xl text-[16px] font-extrabold text-center text-[#212529]">
         Get 6 chances to guess <br /> a 5-letter word.
       </p>
-      <p className="pb-4 md:text-[16] text-[14px] font-normal text-center text-[#212529]">
+      <p className=" md:text-[16] text-[14px] font-normal text-center text-[#212529]">
         Like Wordle but with a twist.
+      </p>
+      <p className="pb-4 md:text-[16] text-[14px] font-normal text-center text-[#212529]">
+        Login or Sign Up to track your games statistics.
       </p>
       <div className="flex flex-col w-full gap-4 md:flex-row">
         <Link
