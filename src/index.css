@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#install-button {
+  display: none;
+}
+
 body {
   text-align: center;
   font-family: "Inter", sans-serif;
