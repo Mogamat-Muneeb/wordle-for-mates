@@ -16,7 +16,7 @@ const ReUsableModal = ({ children, handleModalOpen }) => {
   return (
     <div className="mx-auto w-full fixed inset-0 z-[1002] h-screen justify-center flex items-center ">
       <div
-        className="fixed inset-0 bg-black/50"
+        className="fixed inset-0 bg-white/60"
         onClick={handleOverlayClick}
       ></div>
       <div className="z-[60] relative md:ml-0  md:mr-0 ml-3 mr-3">{children}</div>

@@ -13,7 +13,7 @@ const Account = ({ toggleModal }) => {
   };
 
   return (
-    <div className="bg-white  mx-auto md:max-h-[700px] h-[400px] max-w-full md:h-[500px] overflow-y-auto rounded-lg px-4 ">
+    <div className="bg-white  mx-auto md:max-h-[700px] h-[400px] max-w-full md:h-[500px] overflow-y-auto rounded-lg px-4 shadow-lg ">
       <div className="sticky top-[-17px] items-center justify-between flex max-w-[980px] w-full mx-auto  z-[60] bg-white h-[40px]">
         <h1 className="text-[16px] lg:text-[20px]  font-bold">Statistics</h1>
         <button onClick={toggleModal}>

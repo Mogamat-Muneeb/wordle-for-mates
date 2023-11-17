@@ -117,12 +117,12 @@ const WordleWithFriends = () => {
         </div>
       </div>
       <div>
-        <ul>
+        <div className="pt-4">
           {gameData.length > 0 ? (
             gameData.map((gameDocument, index) => {
               return (
                 <React.Fragment key={index}>
-                  <div className="flex gap-1 py-[0.5px]">
+                  <div className="flex gap-1 py-[0.5px] ">
                     <span>{index + 1}.</span>
                     <h2>
                       {gameDocument?.results ? (
@@ -142,7 +142,7 @@ const WordleWithFriends = () => {
           ) : (
             <li>No results available</li>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );
