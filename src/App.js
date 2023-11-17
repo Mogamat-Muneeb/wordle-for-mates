@@ -8,8 +8,8 @@ import WordleSingle from "./components/WordleSingle.jsx";
 import ReactGA from "react-ga";
 import WordleWithFriend from "./components/WordleWithFriend";
 import { Analytics } from "@vercel/analytics/react";
-import { Login } from "./components/Login.jsx";
-import Account from "./components/Dashboard/Account.jsx";
+// import { Login } from "./components/Login.jsx";
+// import Account from "./components/Dashboard/Account.jsx";
 
 
 function App() {
