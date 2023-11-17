@@ -122,12 +122,20 @@ const WordleWithFriends = () => {
             gameData.map((gameDocument, index) => {
               return (
                 <React.Fragment key={index}>
-                  <li>
-                    {index + 1}.{" "}
-                    {gameDocument?.results
-                      ? gameDocument.results[0]?.result
-                      : ""}
-                  </li>
+                  <div className="flex gap-1 py-[0.5px]">
+                    <span>{index + 1}.</span>
+                    <h2>
+                      {gameDocument?.results ? (
+                        <>
+                          <span>{gameDocument.results[0]?.result}</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Game not completed..</span>
+                        </>
+                      )}
+                    </h2>
+                  </div>
                 </React.Fragment>
               );
             })

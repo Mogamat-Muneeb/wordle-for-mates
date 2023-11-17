@@ -67,9 +67,9 @@ function Header() {
                   </button>
                   <button
                     onClick={signUserOut}
-                    className="font-bold text-[16px] md:block hidden"
+                    className="font-semibold text-[16px] md:block hidden"
                   >
-                    logout
+                    Log Out
                   </button>
                   <button
                     onClick={signUserOut}
