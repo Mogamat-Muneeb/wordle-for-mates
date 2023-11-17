@@ -14,8 +14,14 @@ import { auth, db } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import { encrypt } from "../helper";
 
 export default function Wordle({ solution, createName }) {
+  console.log("🚀 ~ file: Wordle.jsx:20 ~ Wordle ~ solution:", solution)
+  const originalText = solution;
+  const shiftAmount = 3;
+  const encryptedText = encrypt(originalText, shiftAmount);
+  console.log("🚀 ~ file: Wordle.jsx:24 ~ Wordle ~ encryptedText:", encryptedText)
   const {
     currentGuess,
     guesses,
@@ -26,7 +32,7 @@ export default function Wordle({ solution, createName }) {
     errorMessage,
     setErrorMessage,
     setGameState,
-  } = useWordle(solution);
+  } = useWordle(encryptedText);
   const [showModal, setShowModal] = useState(false);
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -97,7 +103,7 @@ export default function Wordle({ solution, createName }) {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [solution, currentGuess, guesses, turn, isCorrect, usedKeys]);
+  }, [encryptedText, currentGuess, guesses, turn, isCorrect, usedKeys]);
 
   const updateGameDocument = async () => {
     try {
@@ -154,7 +160,7 @@ export default function Wordle({ solution, createName }) {
         <Modal
           isCorrect={isCorrect}
           turn={turn}
-          solution={solution}
+          solution={encryptedText}
           createName={createName}
         />
       )}

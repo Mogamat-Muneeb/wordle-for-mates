@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import englishWords from "../data/db.json";
+import { decrypt } from "../helper";
 const useWordleS = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
@@ -8,7 +9,18 @@ const useWordleS = (solution) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const [usedKeys, setUsedKeys] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [decryptedSolution, setDecryptedSolution] = useState("");
 
+  const decryptSolution = () => {
+    if (solution) {
+      const shiftAmount = 3; // Use the appropriate shift amount
+      setDecryptedSolution(decrypt(solution, shiftAmount));
+    }
+  };
+
+  useEffect(() => {
+    decryptSolution();
+  }, [solution]);
 
   const setGameState = (state) => {
     setCurrentGuess(state.currentGuess);
@@ -17,14 +29,15 @@ const useWordleS = (solution) => {
     setIsCorrect(state.isCorrect);
     setUsedKeys(state.usedKeys);
   };
+
   const formatGuess = () => {
-    let solutionArray = [...solution];
+    let solutionArray = [...decryptedSolution];
     let formattedGuess = [...currentGuess].map((l) => {
       return { key: l, color: "grey" };
     });
 
     formattedGuess.forEach((l, i) => {
-      if (solution[i] === l.key) {
+      if (decryptedSolution[i] === l.key) {
         formattedGuess[i].color = "green";
         solutionArray[i] = null;
       }
@@ -41,7 +54,7 @@ const useWordleS = (solution) => {
   };
 
   const addNewGuess = (formattedGuess) => {
-    if (currentGuess === solution) {
+    if (currentGuess === decryptedSolution) {
       setIsCorrect(true);
     }
 
@@ -122,7 +135,7 @@ const useWordleS = (solution) => {
     handleKeyup,
     errorMessage,
     setErrorMessage,
-    setGameState
+    setGameState,
   };
 };
 

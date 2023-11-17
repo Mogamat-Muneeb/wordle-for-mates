@@ -7,13 +7,11 @@ import englishWords from "../data/db.json";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../config/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { encrypt } from "../helper";
 
 const WordleSingle = () => {
   const [solution, setSolution] = useState(null);
-  console.log(
-    "🚀 ~ file: WordleSingle.jsx:13 ~ WordleSingle ~ solution:",
-    solution
-  );
+
   const [user] = useAuthState(auth);
   const {
     currentGuess,
@@ -38,7 +36,10 @@ const WordleSingle = () => {
       do {
         randomSolution = words[Math.floor(Math.random() * words.length)];
       } while (randomSolution.length !== 5);
-      setSolution(randomSolution);
+      const originalText = randomSolution;
+      const shiftAmount = 3;
+      const encryptedText = encrypt(originalText, shiftAmount);
+      setSolution(encryptedText);
     }
   };
 
