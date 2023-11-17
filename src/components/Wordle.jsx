@@ -14,14 +14,8 @@ import { auth, db } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { encrypt } from "../helper";
 
 export default function Wordle({ solution, createName }) {
-  console.log("🚀 ~ file: Wordle.jsx:20 ~ Wordle ~ solution:", solution)
-  const originalText = solution;
-  const shiftAmount = 3;
-  const encryptedText = encrypt(originalText, shiftAmount);
-  console.log("🚀 ~ file: Wordle.jsx:24 ~ Wordle ~ encryptedText:", encryptedText)
   const {
     currentGuess,
     guesses,
@@ -32,7 +26,7 @@ export default function Wordle({ solution, createName }) {
     errorMessage,
     setErrorMessage,
     setGameState,
-  } = useWordle(encryptedText);
+  } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -103,12 +97,10 @@ export default function Wordle({ solution, createName }) {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [encryptedText, currentGuess, guesses, turn, isCorrect, usedKeys]);
+  }, [solution, currentGuess, guesses, turn, isCorrect, usedKeys]);
 
   const updateGameDocument = async () => {
     try {
-      // Check if there is a user (you need to replace this condition with your actual user check)
-
       if (isCorrect || turn > 5) {
         const gamesRef = collection(db, "user-created-games");
         const querySnapshot = await getDocs(
@@ -118,19 +110,15 @@ export default function Wordle({ solution, createName }) {
         if (!querySnapshot.empty) {
           const docRef = querySnapshot.docs[0].ref;
 
-          // Get existing results array or create a new one
           const existingResults = (
             querySnapshot.docs[0].data().results || []
           ).slice();
 
-          // Add the new result to the array
           existingResults.push({
             result: isCorrect ? "win" : "lose",
             isHowManyTurns: turn,
-            // playerName: "Anonymous", // You can add some default name for anonymous players
           });
 
-          // Update the document with the updated results array and increased play count
           await updateDoc(docRef, {
             results: existingResults,
           });
@@ -160,7 +148,7 @@ export default function Wordle({ solution, createName }) {
         <Modal
           isCorrect={isCorrect}
           turn={turn}
-          solution={encryptedText}
+          solution={solution}
           createName={createName}
         />
       )}

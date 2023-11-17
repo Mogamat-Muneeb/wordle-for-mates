@@ -34,7 +34,7 @@ const WordleWithFriend = () => {
         <span className="text-[#5ac85a] font-bold px-1" >{createName}'s</span> 5
         letter word!
       </p> */}
-      <p className="py-4 font-medium">
+      <p className="py-1font-medium">
         You have 6 tries to guess
         <span className="text-[#5ac85a] font-bold px-1">
           {createName.charAt(0).toUpperCase() + createName.slice(1)}'s

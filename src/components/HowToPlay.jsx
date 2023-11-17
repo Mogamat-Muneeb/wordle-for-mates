@@ -30,8 +30,20 @@ const HowToPlay = (props) => {
         <span className="flex flex-col items-center justify-center gap-2">
           <p className=" text-[14px]">
             You have 6 tries to guess
-            <span className="text-[#5ac85a] font-extrabold px-1">
-              {props.createName.charAt(0).toUpperCase() + props.createName.slice(1)}'s
+            <span
+              className={`  px-1 ${
+                props.createName ? "text-[#5ac85a] font-extrabold" : ""
+              }`}
+            >
+              {props.createName ? (
+                <>
+                  {props.createName.charAt(0).toUpperCase() +
+                    props.createName.slice(1)}
+                  's
+                </>
+              ) : (
+                <>the</>
+              )}
             </span>
             secret word! All guesses must be valid, English words. For example,
             if the secret word is CONES, and your first guess is CHAIR, you will
