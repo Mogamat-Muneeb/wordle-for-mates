@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../config/firebase";
 import MyWordles from "./MyWordles";
 import WordleWithFriends from "./WordleWithFriends";
 import { IoMdClose } from "react-icons/io";
 
 const Account = ({ toggleModal }) => {
-  const [user] = useAuthState(auth);
   const [activeTab, setActiveTab] = useState("wordles");
   const toggleTab = (tab) => {
     setActiveTab(tab);

@@ -2,11 +2,8 @@ import { auth, provider, db } from "../config/firebase";
 import { sendEmailVerification, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-// import { GoogleIcon } from "../components/icon";
 
 export const Login = ({ toggleModalLogIn }) => {
-  const navigate = useNavigate();
   const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
     const userRef = doc(db, "users", result.user.uid);

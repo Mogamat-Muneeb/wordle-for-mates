@@ -10,8 +10,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { auth, db } from "../config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { db } from "../config/firebase";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -28,7 +27,6 @@ export default function Wordle({ solution, createName }) {
     setGameState,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
-  const [user] = useAuthState(auth);
   const location = useLocation();
 
   useEffect(() => {
