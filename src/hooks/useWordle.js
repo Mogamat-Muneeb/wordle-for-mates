@@ -88,17 +88,17 @@ const useWordle = (solution) => {
   const handleKeyup = ({ key }) => {
     if (key === "Enter") {
       if (turn > 5) {
-        setErrorMessage("you used all your guesses!");
+        setErrorMessage("You used all your guesses!");
         return;
       }
 
       if (history.includes(currentGuess)) {
-        setErrorMessage("you already tried that word.");
+        setErrorMessage("You already tried that word.");
         return;
       }
 
       if (currentGuess.length !== 5) {
-        setErrorMessage("word must be 5 chars.");
+        setErrorMessage("Word must be 5 letters.");
         return;
       }
       const formatted = formatGuess();

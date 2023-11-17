@@ -9,6 +9,9 @@ import {
 import { FaFacebook, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import ReactGA from "react-ga";
 import { Link } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const CreateGame = () => {
   const [word, setWord] = useState("");
@@ -16,13 +19,14 @@ const CreateGame = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   const [link, setLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
   }, []);
 
   const handleWordChange = (event) => {
-    const newWord = event.target.value;
+    const newWord = event.target.value.toLowerCase();
     setWord(newWord);
   };
 
@@ -54,7 +58,7 @@ const CreateGame = () => {
     const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
     const encryptedWord = sjcl.encrypt(secretKey, word);
     const link = `https://wordle-for-mates.vercel.app/wordle?word=${encodeURIComponent(
-    // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
+      // const link = `http://localhost:3000/wordle?word=${encodeURIComponent(
       encryptedWord
     )}&name=${encodeURIComponent(name)}`;
     setLink(link);
@@ -64,6 +68,26 @@ const CreateGame = () => {
       action: "user generate link",
       label: "user label",
     });
+
+    if (user) {
+      const currentDate = new Date().toISOString();
+
+      const gameData = {
+        guessingWord: word,
+        currentDate,
+        link,
+        userId: user.uid,
+      };
+
+      const gamesRef = collection(db, "user-created-games");
+      addDoc(gamesRef, gameData)
+        .then(() => {
+          console.log("Data saved to Firebase");
+        })
+        .catch((error) => {
+          console.error("Error saving data to Firebase:", error);
+        });
+    }
 
     navigator.clipboard
       .writeText(link)
