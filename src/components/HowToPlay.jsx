@@ -1,33 +1,21 @@
 import React from "react";
+import { IoMdClose } from "react-icons/io";
 
 const HowToPlay = (props) => {
   return (
-    <div className="modal2">
-      <div className="flex flex-col gap-3">
+    <div className="modal2 ">
+      <div className="flex flex-col gap-3 no-scrollbar">
         <span className="flex items-center w-full">
-          <span className="flex items-center justify-center w-full">
-            <p className="font-bold md:text-[20px] text-[16px]">How To Play</p>
+          <span className="flex items-start justify-start w-full">
+            <p className="font-bold md:text-[16px] text-[14px]">How To Play</p>
           </span>
-          <span className="flex items-end justify-end ">
+          <span className="flex items-end justify-end w-full">
             <button onClick={props.handleShow}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-7 h-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
+            <IoMdClose />
             </button>
           </span>
         </span>
-        <span className="flex flex-col items-center justify-center gap-2">
+        <span className="flex flex-col items-center justify-center gap-2 max-w-[350px] mx-auto w-full">
           <p className=" text-[14px]">
             You have 6 tries to guess
             <span
@@ -55,7 +43,7 @@ const HowToPlay = (props) => {
             className="w-[200px] object-cover"
           />
         </span>
-        <span className="flex flex-col items-center justify-center gap-2">
+        <span className="flex flex-col items-center justify-center gap-2 max-w-[350px] mx-auto w-full">
           <p className=" text-[14px]">
             Green means the letter is in the word and in the correct position.
             If your second guess is BROTH, you will see:
@@ -66,7 +54,7 @@ const HowToPlay = (props) => {
             className="w-[200px] object-cover"
           />
         </span>
-        <span className="flex flex-col items-center justify-center gap-2">
+        <span className="flex flex-col items-center justify-center gap-2 max-w-[350px] mx-auto w-full">
           <p className=" text-[14px]">
             Yellow means the letter is in the word but in the incorrect
             position. Solve the secret word within 6 tries and use the colored

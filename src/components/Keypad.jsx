@@ -50,7 +50,7 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
 
   return (
     < >
-      <div className="mt-5 keypad no-scrollbar">
+      <div className="mt-2 keypad no-scrollbar">
         {letters &&
           letters.map((row, rowIndex) => (
             <div
