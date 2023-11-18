@@ -50,7 +50,7 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
 
   return (
     < >
-      <div className="mt-5 keypad">
+      <div className="mt-2 keypad no-scrollbar">
         {letters &&
           letters.map((row, rowIndex) => (
             <div
@@ -65,8 +65,8 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
                     className={`${color}  
                      ${
                        letter.key === "Enter" || letter.key === "Backspace"
-                         ? "md:w-[100px] w-[50px] flex items-center justify-center"
-                         : "md:w-[40px] w-[25px] flex items-center justify-center"
+                         ? "md:w-[100px] w-[50px] flex items-center justify-center "
+                         : "md:w-[40px] w-[25px] flex items-center justify-center "
                      }  cursor-pointer px-4 py-4  `}
                     onClick={() => handleClick(letter.key)}
                   >

@@ -135,10 +135,7 @@ const MyWordles = () => {
               </p>
             </div>
           </div>
-          <p className="font-extrabold text-[24px] text-[#212529] pt-10">
-            Games Played
-          </p>
-          <div>
+          <div className="pt-4">
             {gamesData.map((game, index) => (
               <div key={index} className="flex items-center gap-2 ">
                 <p className="flex justify-start items-start text-[14px] tracking-tighter">

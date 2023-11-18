@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
@@ -67,9 +67,9 @@ function Header() {
                   </button>
                   <button
                     onClick={signUserOut}
-                    className="font-bold text-[16px] md:block hidden"
+                    className="font-semibold text-[16px] md:block hidden"
                   >
-                    logout
+                    Log Out
                   </button>
                   <button
                     onClick={signUserOut}

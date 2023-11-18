@@ -14,7 +14,7 @@ export default function Modal({ isCorrect, solution, turn, createName }) {
       .writeText(
         ` I found the solution in ${turn} ${
           turn > 1 ? "guesses" : "guess"
-        } on https://wordle-for-mates.vercel.app`
+        } on https://wordle-for-mates.vercel.app play now!!`
       )
       .then(() => {
         setLinkCopied(true);

@@ -7,13 +7,15 @@ import englishWords from "../data/db.json";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../config/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { encrypt } from "../helper";
+import HowToPlay from "./HowToPlay";
 
 const WordleSingle = () => {
   const [solution, setSolution] = useState(null);
-  console.log(
-    "🚀 ~ file: WordleSingle.jsx:13 ~ WordleSingle ~ solution:",
-    solution
-  );
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
   const [user] = useAuthState(auth);
   const {
     currentGuess,
@@ -29,7 +31,6 @@ const WordleSingle = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  // Function to generate a random solution
   const generateRandomSolution = () => {
     const words = englishWords.words;
     let randomSolution = null;
@@ -38,7 +39,10 @@ const WordleSingle = () => {
       do {
         randomSolution = words[Math.floor(Math.random() * words.length)];
       } while (randomSolution.length !== 5);
-      setSolution(randomSolution);
+      const originalText = randomSolution;
+      const shiftAmount = 3;
+      const encryptedText = encrypt(originalText, shiftAmount);
+      setSolution(encryptedText);
     }
   };
 
@@ -137,7 +141,19 @@ const WordleSingle = () => {
   }, [isCorrect, turn, user, showModal, guesses]);
 
   return (
-    <div>
+    <>
+      {show && <HowToPlay handleShow={handleShow} createName={""} />}
+      <button
+        onClick={handleShow}
+        className="font-bold md:text-[20px] text-[16px]"
+      >
+        How to play
+      </button>
+
+      <p className="py-1 font-medium ">
+        You have 6 tries to guess the 5-letter word!
+      </p>
+
       {errorMessage && (
         <div className="w-10/12 max-w-md py-4 mx-auto text-center">
           <span className="bg-[#FFDDDD] text-[#C30000]  flex justify-center items-center w-full p-2 rounded text-[14px]">
@@ -150,7 +166,7 @@ const WordleSingle = () => {
       {showModal && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}
-    </div>
+    </>
   );
 };
 
