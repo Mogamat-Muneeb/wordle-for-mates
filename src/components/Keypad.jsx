@@ -66,7 +66,7 @@ export default function Keypad({ usedKeys, handleLetterClick }) {
                      ${
                        letter.key === "Enter" || letter.key === "Backspace"
                          ? "md:w-[100px] w-[50px] flex items-center justify-center "
-                         : "md:w-[30px] w-[25px] flex items-center justify-center "
+                         : "md:w-[40px] w-[25px] flex items-center justify-center "
                      }  cursor-pointer px-4 py-4  `}
                     onClick={() => handleClick(letter.key)}
                   >
