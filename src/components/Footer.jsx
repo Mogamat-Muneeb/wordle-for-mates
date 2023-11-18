@@ -18,9 +18,9 @@ function Footer() {
       </p>
 
       <p className="text-[12px] flex flex-col text-center  ">
-        <a href="https://wa.me/0761621649">
+        <Link to="https://wa.me/+27761621649" target="_blank">
           <span className="font-bold">Bugs? </span> Please report at 0761621649
-        </a>
+        </Link>
       </p>
       <p className="text-[12px] bg-white text-[#5ac85a]   justify-end items-center   flex ">
         <span>Wordle for mates ©</span> <span> {currentYear}</span>
