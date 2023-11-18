@@ -10,7 +10,7 @@ function Footer() {
         <span>
           Made by
           <span className="pl-1 font-bold cursor-pointer text-[12px] bg-white text-[#5ac85a]">
-            <Link target="_blank" to="https://mog-muneeb-davids.web.app">
+            <Link target="_blank" to="https://muneebdavids.com">
               Mog.Muneeb Davids
             </Link>
           </span>
