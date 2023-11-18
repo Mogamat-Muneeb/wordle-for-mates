@@ -47,14 +47,23 @@
     <title>Wordle For Mates</title>
 
     <script>
-      // Get the name query parameter from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");
 
-      // Set the title with the name if it exists
-      if (name) {
-        document.title = `Can you solve ${name}'s Wordle? | Wordle for Mates`;
-      }
+const urlParams = new URLSearchParams(window.location.search);
+  const name = urlParams.get("name");
+
+  // Set the title with the capitalized name if it exists
+  if (name) {
+    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+    document.title = `Can you solve ${capitalizedName}'s Wordle? | Wordle for Mates`;
+  }
+      // Get the name query parameter from the URL
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const name = urlParams.get("name");
+
+      // // Set the title with the name if it exists
+      // if (name) {
+      //   document.title = `Can you solve ${name}'s Wordle? | Wordle for Mates`;
+      // }
     </script>
   </head>
   <body>
