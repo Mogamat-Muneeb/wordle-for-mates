@@ -24,6 +24,7 @@ export default function Wordle({ solution, createName }) {
     handleKeyup,
     errorMessage,
     setErrorMessage,
+    decryptedSolution,
     setGameState,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
@@ -146,7 +147,7 @@ export default function Wordle({ solution, createName }) {
         <Modal
           isCorrect={isCorrect}
           turn={turn}
-          solution={solution}
+          solution={decryptedSolution}
           createName={createName}
         />
       )}

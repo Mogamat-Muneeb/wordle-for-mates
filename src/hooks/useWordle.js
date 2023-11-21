@@ -137,7 +137,8 @@ const useWordle = (solution) => {
     handleKeyup,
     errorMessage,
     setErrorMessage,
-    setGameState
+    setGameState,
+    decryptedSolution
   };
 };
 
