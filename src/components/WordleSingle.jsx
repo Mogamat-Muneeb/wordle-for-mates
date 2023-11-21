@@ -12,6 +12,7 @@ import HowToPlay from "./HowToPlay";
 
 const WordleSingle = () => {
   const [solution, setSolution] = useState(null);
+  console.log("🚀 ~ file: WordleSingle.jsx:15 ~ WordleSingle ~ solution:", solution)
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
@@ -27,6 +28,7 @@ const WordleSingle = () => {
     errorMessage,
     setErrorMessage,
     setGameState,
+    decryptedSolution
   } = useWordleS(solution);
 
   const [showModal, setShowModal] = useState(false);
@@ -164,7 +166,7 @@ const WordleSingle = () => {
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
       <Keypad usedKeys={usedKeys} handleLetterClick={handleLetterClick} />
       {showModal && (
-        <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
+        <Modal isCorrect={isCorrect} turn={turn} solution={decryptedSolution} />
       )}
     </>
   );
