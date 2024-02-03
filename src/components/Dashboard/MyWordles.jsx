@@ -137,13 +137,13 @@ const MyWordles = () => {
           </div>
           <div className="pt-4">
             {gamesData.map((game, index) => (
-              <div key={index} className="flex items-center gap-2 ">
-                <p className="flex justify-start items-start text-[14px] tracking-tighter">
+              <div key={index} className="flex items-center gap-4 ">
+                <p className="flex justify-start items-start text-[14px] tracking-tighter w-[20px] text-start">
                   {index + 1}
                 </p>
                 <h2
                   className={` font-semibold capitalize   ${
-                    game.result === "win" ? "text-[#5ac85a]" : "text-red-600"
+                    game.result === "win" ? "text-[#5ac85a] w-[35px] text-start" : "text-red-600"
                   }`}
                 >
                   {game.result}

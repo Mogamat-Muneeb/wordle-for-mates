@@ -12,7 +12,10 @@ import HowToPlay from "./HowToPlay";
 
 const WordleSingle = () => {
   const [solution, setSolution] = useState(null);
-  console.log("🚀 ~ file: WordleSingle.jsx:15 ~ WordleSingle ~ solution:", solution)
+  console.log(
+    "🚀 ~ file: WordleSingle.jsx:15 ~ WordleSingle ~ solution:",
+    solution
+  );
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
@@ -28,7 +31,7 @@ const WordleSingle = () => {
     errorMessage,
     setErrorMessage,
     setGameState,
-    decryptedSolution
+    decryptedSolution,
   } = useWordleS(solution);
 
   const [showModal, setShowModal] = useState(false);

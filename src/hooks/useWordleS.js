@@ -11,7 +11,6 @@ const useWordleS = (solution) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [decryptedSolution, setDecryptedSolution] = useState("");
 
-
   const decryptSolution = () => {
     if (solution) {
       const shiftAmount = 3; // Use the appropriate shift amount
@@ -22,7 +21,7 @@ const useWordleS = (solution) => {
   useEffect(() => {
     decryptSolution();
   }, [solution]);
-  
+
   const setGameState = (state) => {
     setCurrentGuess(state.currentGuess);
     setGuesses(state.guesses);
@@ -30,7 +29,6 @@ const useWordleS = (solution) => {
     setIsCorrect(state.isCorrect);
     setUsedKeys(state.usedKeys);
   };
-
 
   const formatGuess = () => {
     let solutionArray = [...decryptedSolution];
@@ -138,7 +136,7 @@ const useWordleS = (solution) => {
     errorMessage,
     setErrorMessage,
     setGameState,
-    decryptedSolution
+    decryptedSolution,
   };
 };
 
